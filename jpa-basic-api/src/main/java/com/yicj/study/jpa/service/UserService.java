@@ -1,7 +1,12 @@
 package com.yicj.study.jpa.service;
 
 import com.yicj.study.jpa.entity.User;
+import org.springframework.data.domain.Sort;
+
+import java.util.List;
 
 public interface UserService {
-    public Integer addUser(User user) ;
+    Integer addUser(User user) ;
+
+    List<User> findAll(Sort sort) ;
 }

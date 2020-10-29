@@ -35,4 +35,19 @@ public class UserServiceTest {
         List<User> users = userService.findAll(sort);
         log.info("users : {}", users);
     }
+
+    @Test
+    public void getAllUser(){
+        int page = 1 ;
+        int size = 10;
+        List<User> allUser = userService.getAllUser(page, size);
+        log.info("all users : {}", allUser);
+    }
+
+    @Test
+    public void findByName(){
+        String name = "1yicj" ;
+        List<User> list = userService.findByName(name);
+        log.info("list : {}", list);
+    }
 }

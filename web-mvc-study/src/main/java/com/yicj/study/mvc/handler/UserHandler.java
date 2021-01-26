@@ -25,14 +25,19 @@ public class UserHandler {
         );
     }
 
+    //https://blog.csdn.net/zhangjun62/article/details/91967491
     // 这里一直无法获取到参数，所以改为使用Controller形式，可以正常获取
     public Mono<ServerResponse> add2(ServerRequest request) {
         Mono<User> body = request.bodyToMono(User.class);
-        body.doOnNext(user -> {
-            log.info("===> {}", user);
+        body.subscribe(user -> {
+            log.info("===> user : {}", user);
         }) ;
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         log.info("body : {}", body);
-        body.subscribe(System.out::println);
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(
                 Mono.just(JsonResult.success("success")),JsonResult.class
         );

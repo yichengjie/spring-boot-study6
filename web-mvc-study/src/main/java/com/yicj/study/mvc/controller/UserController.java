@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @Slf4j
-@RestController
-@RequestMapping("/api/users")
+//@RestController
+//@RequestMapping("/api/users")
 public class UserController {
 
     @PostMapping("/add2")

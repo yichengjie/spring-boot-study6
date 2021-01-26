@@ -25,7 +25,7 @@
                 }) ;
             }) ;
 
-            $("#clickMe2").click(function (event) {
+            /*$("#clickMe2").click(function (event) {
                 var serverURL = "/api/users/add2" ;
                 var jsObjData = {"username": "yicj","addr":"bjs"} ;
                 var ajaxing = httpUtil.dealAjaxRequest4SimpleParam(serverURL,jsObjData) ;
@@ -34,10 +34,10 @@
                 },function (err) {
                     console.error(err) ;
                 }) ;
-            }) ;
+            }) ;*/
 
             $("#clickMe3").click(function (event) {
-                var serverURL = "/api/users/add3" ;
+                var serverURL = "/api/users/add2" ;
                 var jsObjData = {"username": "yicj","addr":"bjs"} ;
                 var ajaxing = httpUtil.dealAjaxRequest4JSObj(serverURL,jsObjData) ;
                 $.when(ajaxing).then(function (resp) {

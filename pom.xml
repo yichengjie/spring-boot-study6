@@ -11,6 +11,7 @@
     <modules>
         <module>jpa-basic-api</module>
         <module>func-program</module>
+        <module>web-mvc-study</module>
     </modules>
 
     <parent>

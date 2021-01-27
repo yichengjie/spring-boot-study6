@@ -1,0 +1,6 @@
+syntax = "proto3";
+option java_package = "com.yicj.study.proto" ;
+option java_outer_classname = "ExRouteModel" ;
+message ExRoute{
+    string message = 1 ;
+}

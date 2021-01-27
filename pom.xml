@@ -12,6 +12,7 @@
         <module>jpa-basic-api</module>
         <module>func-program</module>
         <module>web-mvc-study</module>
+        <module>redis-study</module>
     </modules>
 
     <parent>

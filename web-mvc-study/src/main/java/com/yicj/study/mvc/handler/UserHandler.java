@@ -28,7 +28,7 @@ public class UserHandler {
     //https://blog.csdn.net/zhangjun62/article/details/91967491
     // 这里一直无法获取到参数，所以改为使用Controller形式，可以正常获取
     public Mono<ServerResponse> add2(ServerRequest request) {
-        Mono<User> body = request.bodyToMono(User.class);
+        Mono<Object> body = request.bodyToMono(Object.class);
         body.subscribe(user -> {
             log.info("===> user : {}", user);
         }) ;

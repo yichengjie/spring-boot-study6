@@ -9,6 +9,8 @@ import org.springframework.web.reactive.function.server.RequestPredicates;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
+
+import static org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED_VALUE;
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 
 @Configuration
@@ -21,7 +23,8 @@ public class MyRouteConfig {
         return RouterFunctions
                 .route(POST("/api/users/add"), userHandler::add)
                 .andRoute(RequestPredicates.POST("/api/users/add2")
-                        .and(RequestPredicates.accept(MediaType.APPLICATION_JSON_UTF8)), userHandler::add2);
-                //.andRoute(POST("/api/users/add2").and(accept(APPLICATION_JSON)), userHandler::add2);
+                        .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), userHandler::add2)
+                .andRoute(POST("/api/users/add3")
+                        .and(RequestPredicates.accept(MediaType.APPLICATION_FORM_URLENCODED)), userHandler::add3);
     }
 }

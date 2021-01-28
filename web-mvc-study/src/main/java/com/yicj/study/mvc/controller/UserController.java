@@ -10,7 +10,6 @@ import reactor.core.publisher.Mono;
 //@RestController
 //@RequestMapping("/api/users")
 public class UserController {
-
     @PostMapping("/add2")
     public Mono<JsonResult<String>> add2(@RequestBody User user){
         log.info("user : {}", user);

@@ -29,35 +29,38 @@ public class UserHandler {
             Mono.just(JsonResult.success("success")),JsonResult.class
         );
     }
-    //https://blog.csdn.net/zhangjun62/article/details/91967491
+
     public Mono<ServerResponse> add2(ServerRequest request) {
         Mono<User> userMono = request.bodyToMono(User.class);
         log.info("add2 method execute ...");
         Mono<JsonResult<String>> resultMono = userMono.map(user -> {
-            log.info("username : {}, addr : {}", user.getUsername(), user.getAddr());
-            log.info("do busi .....");
-            sleep(1000);
-            return JsonResult.success("hello world");
+            String retContent = doBusi(user);
+            return JsonResult.success(retContent);
         });
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(resultMono,JsonResult.class);
     }
 
+    //https://blog.csdn.net/zhangjun62/article/details/91967491
     // 下面这种写法有问题，不执行业务代码
     // 这里一直无法获取到参数，所以改为使用Controller形式，可以正常获取
     public Mono<ServerResponse> add3(ServerRequest request) {
         Mono<User> userMono = request.bodyToMono(User.class);
         log.info("add3 method execute ...");
         userMono.map(user -> {
-            log.info("username : {}, addr : {}", user.getUsername(), user.getAddr());
-            log.info("do busi .....");
-            sleep(1000);
-            return JsonResult.success("hello world");
+            String retContent = doBusi(user);
+            return JsonResult.success(retContent);
         }).subscribe(info->{
             log.info("====> {}", info);
         });
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(Mono.just(JsonResult.success("success")),JsonResult.class);
     }
 
+    private String doBusi(User user){
+        log.info("username : {}, addr : {}", user.getUsername(), user.getAddr());
+        log.info("do busi .....");
+        sleep(1000);
+        return "Hello world" ;
+    }
 
     private void sleep(int time){
         try {

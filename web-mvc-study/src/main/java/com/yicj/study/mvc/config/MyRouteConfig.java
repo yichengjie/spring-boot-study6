@@ -23,8 +23,8 @@ public class MyRouteConfig {
         return RouterFunctions
                 .route(POST("/api/users/add"), userHandler::add)
                 .andRoute(RequestPredicates.POST("/api/users/add2")
-                        .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), userHandler::add2)
-                .andRoute(POST("/api/users/add3")
-                        .and(RequestPredicates.accept(MediaType.APPLICATION_FORM_URLENCODED)), userHandler::add3);
+                    .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), userHandler::add2) ;
+               /* .andRoute(POST("/api/users/add3")
+                        .and(RequestPredicates.accept(MediaType.APPLICATION_FORM_URLENCODED)), userHandler::add3);*/
     }
 }

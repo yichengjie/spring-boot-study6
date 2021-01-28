@@ -22,12 +22,15 @@ import java.util.function.Function;
 public class UserHandler {
 
     public Mono<ServerResponse> add(ServerRequest request) {
-        String username = request.queryParam("username").orElse("noname");
-        String addr = request.queryParam("addr").orElse("bjs");
-        log.info("username : {}, addr : {}", username, addr);
-        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(
-            Mono.just(JsonResult.success("success")),JsonResult.class
-        );
+        Mono<MultiValueMap<String, String>> formData = request.exchange().getFormData() ;
+        return formData.flatMap(multiValueMap -> {
+            String username = multiValueMap.getFirst("username");
+            String addr = multiValueMap.getFirst("addr") ;
+            log.info("=====> username : {}， addr: {}", username, addr);
+            return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(
+                    Mono.just(JsonResult.success("success")),JsonResult.class
+            );
+        }) ;
     }
 
     public Mono<ServerResponse> add2(ServerRequest request) {

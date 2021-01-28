@@ -11,7 +11,7 @@
     <modules>
         <module>jpa-basic-api</module>
         <module>func-program</module>
-        <module>web-mvc-study</module>
+        <module>web-flux-study</module>
         <module>redis-study</module>
         <module>protobuf-study</module>
     </modules>

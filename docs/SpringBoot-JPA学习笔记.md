@@ -45,13 +45,55 @@
          private Set<User> users = new HashSet<>() ;
      }
     ```
-4. 编写Repository接口
+4. 编写DAO层代码
     ```java
     public interface UserRepository extends JpaRepository<User, Integer> {
         List<User> findByName(String name) ;
     }
     ```
-5. 编写单元测试
+5. 编写Service层代码
+    ```java
+    public interface UserService {
+        Integer addUser(User user) ;
+        List<User> findAll(Sort sort) ;
+        List<User> getAllUser(int page, int size) ;
+        List<User> findByName(String name) ;
+    }
+    @Slf4j
+    @Service
+    @Transactional
+    public class UserServiceImpl implements UserService {
+        @Autowired
+        private UserRepository userRepository ;
+        @Override
+        public Integer addUser(User user) {
+            userRepository.save(user) ;
+            Integer id = user.getId();
+            user.setName("1" + user.getName());
+            userRepository.save(user) ;
+            return id ;
+        }
+        @Override
+        public List<User> findAll(Sort sort) {
+            return userRepository.findAll(sort);
+        }
+        @Override
+        public List<User> getAllUser(int page, int size) {
+            PageRequest pageable = PageRequest.of(page, size) ;
+            Page<User> pageObject = userRepository.findAll(pageable);
+            int totalPages = pageObject.getTotalPages();
+            long totalElements = pageObject.getTotalElements();
+            log.info("totalPages :{}", totalPages);
+            log.info("totalElements : {}", totalElements);
+            return pageObject.getContent();
+        }
+        @Override
+        public List<User> findByName(String name) {
+            return userRepository.findByName(name);
+        }
+    }
+    ```
+6. 编写单元测试
     ```java
     @Slf4j
     @RunWith(SpringRunner.class)

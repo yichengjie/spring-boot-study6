@@ -20,6 +20,8 @@
     @Entity@Data@NoArgsConstructor
     public class User {
         @Id
+        // 主键策略
+        //IDENTITY: 使用数据库表的主键策略
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer id ;
         // 用户名称

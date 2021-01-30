@@ -21,5 +21,4 @@ public class Department {
     @Column
     @OneToMany(mappedBy = "department")
     private Set<User> users = new HashSet<>() ;
-    // 忽略构造函数和getter/setter方法
 }

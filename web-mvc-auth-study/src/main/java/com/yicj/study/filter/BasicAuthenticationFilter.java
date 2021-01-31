@@ -4,6 +4,7 @@ import com.yicj.study.model.entity.User;
 import com.yicj.study.repository.UserRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 // basic认证流程
+@Order(2)
 @Component
 public class BasicAuthenticationFilter extends OncePerRequestFilter {
     @Autowired

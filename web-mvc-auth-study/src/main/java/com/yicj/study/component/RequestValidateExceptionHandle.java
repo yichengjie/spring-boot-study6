@@ -53,6 +53,5 @@ public class RequestValidateExceptionHandle {
     public Message parameterTypeException(HttpMessageConversionException exception) {
         log.error(exception.getCause().getLocalizedMessage());
         return Message.fail("类型转换错误");
-
     }
 }

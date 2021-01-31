@@ -14,7 +14,7 @@
         <module>web-flux-study</module>
         <module>redis-study</module>
         <module>protobuf-study</module>
-        <module>web-mvc-study</module>
+        <module>web-mvc-auth-study</module>
     </modules>
 
     <parent>

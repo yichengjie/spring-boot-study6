@@ -16,12 +16,12 @@ public class AclInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        boolean result = true ;
         // 如果在不需要权限认证集合中
         if (ArrayUtils.contains(permitUrls, request.getRequestURI())){
-            return result ;
+            return true ;
         }
-        User user = (User) request.getAttribute("user");
+        boolean result = true ;
+        User user = (User) request.getSession().getAttribute("user");
         if (user == null){
             response.setContentType("text/plain");
             response.getWriter().write("need authentication");

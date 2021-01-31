@@ -32,9 +32,18 @@ public class BasicAuthenticationFilter extends OncePerRequestFilter {
             String password = items[1] ;
             User user = repository.findByUsername(username);
             if (user != null && StringUtils.equals(password, user.getPassword())){
-                request.setAttribute("user", user);
+                request.getSession().setAttribute("user", user);
+                request.setAttribute("temp", "true") ;
             }
         }
-        chain.doFilter(request, response);
+        // basic 方式访问结束后，移除登录信息
+        try {
+            chain.doFilter(request, response);
+        }finally {
+            String temp = (String)request.getAttribute("temp");
+            if (StringUtils.equals(temp, "true")){
+                request.getSession().removeAttribute("user");
+            }
+        }
     }
 }

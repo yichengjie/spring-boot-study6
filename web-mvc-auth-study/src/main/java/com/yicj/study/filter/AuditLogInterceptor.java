@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Component
@@ -23,7 +22,7 @@ public class AuditLogInterceptor implements HandlerInterceptor {
         AuditLog log = new AuditLog() ;
         log.setMethod(request.getMethod());
         log.setPath(request.getRequestURI());
-        User user = (User)request.getAttribute("user");
+        User user = (User)request.getSession().getAttribute("user");
         if (user != null){
             log.setUsername(user.getUsername());
         }

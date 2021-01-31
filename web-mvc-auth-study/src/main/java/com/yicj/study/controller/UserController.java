@@ -6,13 +6,13 @@ import com.yicj.study.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
-@Controller
+@RestController
 @RequestMapping("/users")
 public class UserController {
     @Autowired
@@ -26,8 +26,19 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public void login(String username, String password, HttpSession session){
+    public void login(String username, String password, HttpServletRequest request){
+        // 防止session固定攻击
+        HttpSession session = request.getSession(false);
+        if (session !=null){
+            session.invalidate();
+        }
+        session = request.getSession(true);
         User user = service.login(username, password);
         session.setAttribute("user", user);
+    }
+
+    @GetMapping("/logout")
+    public void logout(){
+
     }
 }

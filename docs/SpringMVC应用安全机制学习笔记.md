@@ -29,9 +29,14 @@
     ```java
     @Component
     public class AclInterceptor implements HandlerInterceptor {
+        private String [] permitUrls = {"/users/login"} ;
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
             boolean result = true ;
+            // 如果在不需要权限认证集合中
+            if (ArrayUtils.contains(permitUrls, request.getRequestURI())){
+               return result ;
+            }
             User user = (User) request.getAttribute("user");
             if (user == null){
                 response.setContentType("text/plain");

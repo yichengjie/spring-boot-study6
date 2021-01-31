@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public void logout(){
-
+    public void logout(HttpSession session){
+        session.invalidate();
     }
 }

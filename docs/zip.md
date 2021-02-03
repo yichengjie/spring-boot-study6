@@ -1,0 +1,1 @@
+curl -H "Accept-Encoding:gzip, deflate, br" http://localhost:8080/hello

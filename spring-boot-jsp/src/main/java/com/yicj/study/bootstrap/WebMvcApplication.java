@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-@SpringBootApplication(scanBasePackages = "com.yicj.study.configuration")
+@SpringBootApplication(scanBasePackages = "com.yicj.study")
 public class WebMvcApplication {
 
     public static void main(String[] args) {

@@ -16,6 +16,7 @@
         <module>protobuf-study</module>
         <module>web-mvc-study</module>
         <module>hello-world</module>
+        <module>spring-boot-jsp</module>
     </modules>
 
     <parent>

@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.zip.GZIPOutputStream;
 
-@Component
+//@Component
 public class CompressionFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {

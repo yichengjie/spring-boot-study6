@@ -34,7 +34,6 @@ public class RestWebMvcConfigurer implements WebMvcConfigurer {
         newResolvers.addAll(resolvers) ;
         // 重置Resolver对象
         requestMappingHandlerAdapter.setArgumentResolvers(newResolvers);
-
     }
 
 
@@ -49,7 +48,13 @@ public class RestWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         // 自定义HandlerMethodArgumentResolver优先级低于内建HandlerMethodArgumentResolver，
-        // 所有这里设置到第一位也没有用
-        //resolvers.add(0, new PropertiesHandlerMethodArgumentResolver());
+        // 详情见:
+        // RequestMappingHandlerAdapter.afterPropertiesSet() => {
+        //    List<HandlerMethodArgumentResolver> resolvers = getDefaultArgumentResolvers();
+        //    new HandlerMethodArgumentResolverComposite().addResolvers(resolvers)
+        // }
+        // 所以这里添加了也没用，参数将被MapMethodProcessor处理，因为Properties extends Hashtable
+        // 这里调整到@PostConstruct注解的init()中处理
+        //resolvers.add(new PropertiesHandlerMethodArgumentResolver());
     }
 }

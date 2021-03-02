@@ -33,7 +33,7 @@ public class PropertiesHandlerMethodArgumentResolver implements HandlerMethodArg
         charset = charset == null ? Charset.forName("UTF-8") : charset ;
         // 请求输入字节流
         ServletInputStream inputStream = request.getInputStream();
-        InputStreamReader reader = new InputStreamReader(inputStream);
+        InputStreamReader reader = new InputStreamReader(inputStream,charset);
         Properties properties = new Properties() ;
         // 加载字符流成为Properties对象
         properties.load(reader);

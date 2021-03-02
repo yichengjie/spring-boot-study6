@@ -16,7 +16,7 @@ import java.util.Properties;
 public class PropertiesRestController {
     @PostMapping(value = "/add/props",
         consumes = "text/properties;charset=UTF-8"/*,produces = "text/properties"*/)
-    public Properties addProp(@RequestBody Properties properties){
+    public Properties addProp(/*@RequestBody*/ Properties properties){
         log.info("====> prop : {}" , properties);
         return properties ;
     }

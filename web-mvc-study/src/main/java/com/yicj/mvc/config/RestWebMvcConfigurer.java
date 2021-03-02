@@ -2,10 +2,12 @@ package com.yicj.mvc.config;
 
 import com.yicj.mvc.http.converter.properties.PropertiesHttpMessageConverter;
 import com.yicj.mvc.web.method.support.PropertiesHandlerMethodArgumentResolver;
+import com.yicj.mvc.web.method.support.PropertiesHandlerMethodReturnValueHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
@@ -34,15 +36,21 @@ public class RestWebMvcConfigurer implements WebMvcConfigurer {
         newResolvers.addAll(resolvers) ;
         // 重置Resolver对象
         requestMappingHandlerAdapter.setArgumentResolvers(newResolvers);
+        //----------------------------------------------------------------//
+        // 注册PropertiesHandlerMethodReturnValueHandler
+        /*List<HandlerMethodReturnValueHandler> handlers =
+                requestMappingHandlerAdapter.getReturnValueHandlers();
+        List<HandlerMethodReturnValueHandler> newHandlers = new ArrayList<>(handlers.size() + 1) ;
+        newHandlers.add(new PropertiesHandlerMethodReturnValueHandler());
+        newHandlers.addAll(handlers) ;
+        // 重置Handler对象集合
+        requestMappingHandlerAdapter.setReturnValueHandlers(newHandlers);*/
     }
 
 
     @Override
-    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-        // 插入到第一位，其他Converter向后移动
-        converters.add(0,new PropertiesHttpMessageConverter());
-        // 添加到最后时，结果会被MappingJackson2HttpMessageConverter处理返回json
-        //converters.add(new PropertiesHttpMessageConverter());
+    public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> handlers) {
+        handlers.add(new PropertiesHandlerMethodReturnValueHandler());
     }
 
     @Override
@@ -57,4 +65,15 @@ public class RestWebMvcConfigurer implements WebMvcConfigurer {
         // 这里调整到@PostConstruct注解的init()中处理
         //resolvers.add(new PropertiesHandlerMethodArgumentResolver());
     }
+
+
+    @Override
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        // 插入到第一位，其他Converter向后移动
+        converters.add(0,new PropertiesHttpMessageConverter());
+        // 添加到最后时，结果会被MappingJackson2HttpMessageConverter处理返回json
+        //converters.add(new PropertiesHttpMessageConverter());
+    }
+
+
 }

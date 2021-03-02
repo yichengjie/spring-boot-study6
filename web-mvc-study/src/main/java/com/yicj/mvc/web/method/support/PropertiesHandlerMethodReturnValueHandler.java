@@ -28,8 +28,9 @@ public class PropertiesHandlerMethodReturnValueHandler implements  HandlerMethod
 
     @Override
     public void handleReturnValue(Object returnValue, MethodParameter returnType, ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
+        // 告知 spring mvc当前请求已经处理完毕，参考RequestResponseBodyMethodProcessor.handleReturnValue
+        mavContainer.setRequestHandled(true);
         Properties properties = (Properties) returnValue ;
-
         PropertiesHttpMessageConverter converter = new PropertiesHttpMessageConverter() ;
         ServletWebRequest servletWebRequest = (ServletWebRequest) webRequest ;
         HttpServletRequest request = servletWebRequest.getRequest();

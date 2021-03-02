@@ -2,10 +2,7 @@ package com.yicj.mvc.controller;
 
 import com.yicj.mvc.model.User;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +12,7 @@ import java.util.Properties;
 @RestController
 public class HelloController {
 
+    @CrossOrigin
     @GetMapping("/hello")
     public Map<String,String> hello(String message){
         Map<String,String> map = new HashMap<>() ;
@@ -31,6 +29,4 @@ public class HelloController {
 
         return user ;
     }
-
-
 }

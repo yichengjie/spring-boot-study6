@@ -1,5 +1,9 @@
 import org.junit.Test;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
 public class HelloTest {
 
 
@@ -51,5 +55,26 @@ public class HelloTest {
         //abHelloAdapter.hello();
         bHello = abHelloAdapter ;
         bHello.hello();
+    }
+
+    @Test
+    public void test2(){
+        String a="A",b="B",c="C",d="D",e="E";
+        List<String> list=new LinkedList<String>();
+        list.add(a);
+        list.add(e);
+        list.add(d);
+        Iterator<String> first=list.iterator();
+        System.out.println("修改前集合中的元素是：");
+        while(first.hasNext()){
+            System.out.print(first.next()+" ");
+        }
+        //list.set(1, b);
+        list.add(2,c);
+        Iterator second=list.iterator();
+        System.out.println("修改集合后的元素是：");
+        while(second.hasNext()){
+            System.out.print(second.next()+"    ");
+        }
     }
 }

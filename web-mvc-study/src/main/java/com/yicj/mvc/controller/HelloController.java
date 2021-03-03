@@ -3,7 +3,9 @@ package com.yicj.mvc.controller;
 import com.yicj.mvc.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.async.DeferredResult;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -29,4 +31,18 @@ public class HelloController {
 
         return user ;
     }
+
+    @GetMapping("/asyncHello")
+    public DeferredResult<String> asyncHello(){
+        DeferredResult<String> result = new DeferredResult<>() ;
+        log.info("========> other busi");
+        result.setResult("hello world " + LocalDateTime.now()) ;
+        result.onCompletion(()->{
+            log.info("异步业务执行结束..");
+        });
+        return result ;
+    }
+
+
+
 }

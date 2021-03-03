@@ -22,7 +22,7 @@ import java.util.function.Function;
 public class UserHandler {
 
     public Mono<ServerResponse> add(ServerRequest request) {
-        Mono<MultiValueMap<String, String>> formData = request.exchange().getFormData() ;
+        Mono<MultiValueMap<String, String>> formData = request.formData() ;
         return formData.flatMap(multiValueMap -> {
             String username = multiValueMap.getFirst("username");
             String addr = multiValueMap.getFirst("addr") ;
@@ -36,11 +36,10 @@ public class UserHandler {
     public Mono<ServerResponse> add2(ServerRequest request) {
         Mono<User> userMono = request.bodyToMono(User.class);
         log.info("add2 method execute ...");
-        Mono<JsonResult<String>> resultMono = userMono.map(user -> {
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(userMono.map(user -> {
             String retContent = doBusi(user);
             return JsonResult.success(retContent);
-        });
-        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(resultMono,JsonResult.class);
+        }),JsonResult.class);
     }
 
     //https://blog.csdn.net/zhangjun62/article/details/91967491

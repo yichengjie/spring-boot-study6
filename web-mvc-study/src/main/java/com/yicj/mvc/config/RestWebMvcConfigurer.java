@@ -39,13 +39,13 @@ public class RestWebMvcConfigurer implements WebMvcConfigurer {
         requestMappingHandlerAdapter.setArgumentResolvers(newResolvers);
         //----------------------------------------------------------------//
         // 注册PropertiesHandlerMethodReturnValueHandler
-        /*List<HandlerMethodReturnValueHandler> handlers =
+        List<HandlerMethodReturnValueHandler> handlers =
                 requestMappingHandlerAdapter.getReturnValueHandlers();
         List<HandlerMethodReturnValueHandler> newHandlers = new ArrayList<>(handlers.size() + 1) ;
         newHandlers.add(new PropertiesHandlerMethodReturnValueHandler());
         newHandlers.addAll(handlers) ;
         // 重置Handler对象集合
-        requestMappingHandlerAdapter.setReturnValueHandlers(newHandlers);*/
+        requestMappingHandlerAdapter.setReturnValueHandlers(newHandlers);
     }
 
 
@@ -71,7 +71,7 @@ public class RestWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         // 插入到第一位，其他Converter向后移动
-        converters.add(0,new PropertiesHttpMessageConverter());
+       //converters.add(0,new PropertiesHttpMessageConverter());
         // 添加到最后时，结果会被MappingJackson2HttpMessageConverter处理返回json
         //converters.add(new PropertiesHttpMessageConverter());
     }

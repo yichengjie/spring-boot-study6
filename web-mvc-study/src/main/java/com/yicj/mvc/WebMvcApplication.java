@@ -30,10 +30,10 @@ public class WebMvcApplication {
         } ;
     }
 
-    @Bean
+   /* @Bean
     public ServletRegistrationBean servletRegistrationBean(){
         ServletRegistrationBean registrationBean =
                 new ServletRegistrationBean(new AsyncServlet(), "/async-servlet") ;
         return registrationBean ;
-    }
+    }*/
 }

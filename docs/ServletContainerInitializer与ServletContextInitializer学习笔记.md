@@ -62,3 +62,83 @@
 	     return registrationBean ;
 	 }
 	```
+3. Springboot应用部署到传统servlet容器也是利用ServletContainerInitializer的SPI实现
+    ```java
+    public abstract class SpringBootServletInitializer implements WebApplicationInitializer {
+        protected Log logger; // Don't initialize early
+        private boolean registerErrorPageFilter = true;
+        protected final void setRegisterErrorPageFilter(boolean registerErrorPageFilter) {
+            this.registerErrorPageFilter = registerErrorPageFilter;
+        }
+        @Override
+        public void onStartup(ServletContext servletContext) throws ServletException {
+            this.logger = LogFactory.getLog(getClass());
+            WebApplicationContext rootAppContext = createRootApplicationContext(
+                    servletContext);
+            if (rootAppContext != null) {
+                servletContext.addListener(new ContextLoaderListener(rootAppContext) {
+                    @Override
+                    public void contextInitialized(ServletContextEvent event) {
+                        // no-op because the application context is already initialized
+                    }
+                });
+            }
+            else {
+                this.logger.debug("No ContextLoaderListener registered, as "
+                        + "createRootApplicationContext() did not "
+                        + "return an application context");
+            }
+        }
+        protected WebApplicationContext createRootApplicationContext(
+                ServletContext servletContext) {
+            SpringApplicationBuilder builder = createSpringApplicationBuilder();
+            StandardServletEnvironment environment = new StandardServletEnvironment();
+            environment.initPropertySources(servletContext, null);
+            builder.environment(environment);
+            builder.main(getClass());
+            ApplicationContext parent = getExistingRootWebApplicationContext(servletContext);
+            if (parent != null) {
+                this.logger.info("Root context already created (using as parent).");
+                servletContext.setAttribute(
+                        WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, null);
+                builder.initializers(new ParentContextApplicationContextInitializer(parent));
+            }
+            builder.initializers(
+                    new ServletContextApplicationContextInitializer(servletContext));
+            builder.contextClass(AnnotationConfigServletWebServerApplicationContext.class);
+            builder = configure(builder);
+            SpringApplication application = builder.build();
+            if (application.getAllSources().isEmpty() && AnnotationUtils
+                    .findAnnotation(getClass(), Configuration.class) != null) {
+                application.addPrimarySources(Collections.singleton(getClass()));
+            }
+            Assert.state(!application.getAllSources().isEmpty(),
+                    "No SpringApplication sources have been defined. Either override the "
+                            + "configure method or add an @Configuration annotation");
+            // Ensure error pages are registered
+            if (this.registerErrorPageFilter) {
+                application.addPrimarySources(
+                        Collections.singleton(ErrorPageFilterConfiguration.class));
+            }
+            return run(application);
+        }
+        protected SpringApplicationBuilder createSpringApplicationBuilder() {
+            return new SpringApplicationBuilder();
+        }
+        protected WebApplicationContext run(SpringApplication application) {
+            return (WebApplicationContext) application.run();
+        }
+        private ApplicationContext getExistingRootWebApplicationContext(
+                ServletContext servletContext) {
+            Object context = servletContext.getAttribute(
+                    WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
+            if (context instanceof ApplicationContext) {
+                return (ApplicationContext) context;
+            }
+            return null;
+        }
+        protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+            return builder;
+        }
+    }
+    ```

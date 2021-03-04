@@ -1,3 +1,5 @@
+package com.yicj.mvc;
+
 import org.junit.Test;
 
 import java.util.Iterator;

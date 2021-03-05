@@ -1,10 +1,13 @@
 package com.yicj.mvc.config;
 
 import com.yicj.mvc.http.converter.properties.PropertiesHttpMessageConverter;
+import com.yicj.mvc.model.User;
 import com.yicj.mvc.web.method.support.PropertiesHandlerMethodArgumentResolver;
 import com.yicj.mvc.web.method.support.PropertiesHandlerMethodReturnValueHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
@@ -80,5 +83,21 @@ public class RestWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**").allowedOrigins("*") ;
+    }
+
+    @Bean
+    @Profile("dev")
+    public User user1(){
+        User user =  new User() ;
+        user.setUsername("张三");
+        return user ;
+    }
+
+    @Bean
+    @Profile("test")
+    public User user2(){
+        User user =  new User() ;
+        user.setUsername("李四");
+        return user ;
     }
 }

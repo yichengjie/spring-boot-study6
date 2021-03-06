@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
@@ -79,6 +80,19 @@ public class RestWebMvcConfigurer implements WebMvcConfigurer {
         //converters.add(new PropertiesHttpMessageConverter());
     }
 
+
+    /**
+     * 配置内容协商
+     * @param configurer
+     */
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+
+        configurer.favorParameter(true) ;
+        configurer.favorPathExtension(true) ;
+
+
+    }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {

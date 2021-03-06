@@ -19,14 +19,14 @@ public class WebMvcApplication {
         SpringApplication.run(WebMvcApplication.class, args);
     }
 
-    @Bean
+   /* @Bean
     public ServletContextInitializer servletContextInitializer(){
         return servletContext ->{
             CharacterEncodingFilter filter = new CharacterEncodingFilter() ;
             FilterRegistration.Dynamic dynamic = servletContext.addFilter("c-filter", filter);
             dynamic.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), false,"/");
         } ;
-    }
+    }*/
 
    /* @Bean
     public ServletRegistrationBean servletRegistrationBean(){

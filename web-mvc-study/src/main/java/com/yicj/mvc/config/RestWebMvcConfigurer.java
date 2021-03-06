@@ -8,13 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.Ordered;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -98,6 +102,20 @@ public class RestWebMvcConfigurer implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**").allowedOrigins("*") ;
     }
+
+
+    @Bean
+    public ViewResolver myViewResolver(){
+        InternalResourceViewResolver viewResolver =
+                new InternalResourceViewResolver() ;
+        viewResolver.setViewClass(JstlView.class);
+        viewResolver.setPrefix("WEB-INF/jsp/");
+        viewResolver.setSuffix(".jsp");
+        viewResolver.setOrder(Ordered.LOWEST_PRECEDENCE -10);
+        viewResolver.setContentType("application/xml;charset=UTF-8");
+        return viewResolver ;
+    }
+
 
     @Bean
     @Profile("dev")

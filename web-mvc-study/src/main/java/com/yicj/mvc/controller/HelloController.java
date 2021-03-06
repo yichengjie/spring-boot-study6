@@ -2,6 +2,7 @@ package com.yicj.mvc.controller;
 
 import com.yicj.mvc.model.User;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.async.DeferredResult;
 
@@ -11,11 +12,17 @@ import java.util.Map;
 import java.util.Properties;
 
 @Slf4j
-@RestController
+@Controller
 public class HelloController {
 
-    @CrossOrigin
     @GetMapping("/hello")
+    public String hello(){
+        return "hello" ;
+    }
+
+    @ResponseBody
+    @CrossOrigin
+    @GetMapping("/hello1")
     public Map<String,String> hello(String message){
         Map<String,String> map = new HashMap<>() ;
         map.put("code","200") ;
@@ -24,6 +31,7 @@ public class HelloController {
         return map ;
     }
 
+    @ResponseBody
     @PostMapping(value = "/hello2",
             //consumes = "application/xxx;charset=GBK",
             produces = "application/json;charset=UTF-8")
@@ -32,6 +40,7 @@ public class HelloController {
         return user ;
     }
 
+    @ResponseBody
     @GetMapping("/asyncHello")
     public DeferredResult<String> asyncHello(){
         DeferredResult<String> result = new DeferredResult<>() ;

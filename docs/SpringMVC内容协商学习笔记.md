@@ -11,3 +11,16 @@
     c. 关联ContentNegotiationStrategy集合
     ```
 3. 内容协商策略：ContentNegotiationStrategy
+    ```text
+    a. PathExtensionContentNegotiationStrategy
+    b. ParameterContentNegotiationStrategy
+    c. FixedContentNegotiationStrategy
+    d. HeaderContentNegotiationStrategy
+    e. ServletPathExtensionContentNegotiationStrategy
+    ```
+4. ViewResolver Bean列表
+    ```text
+    a. InternalResourceViewResolver
+    b. ThymeleafViewResolver
+    ..
+    ```

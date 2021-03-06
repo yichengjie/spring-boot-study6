@@ -109,10 +109,10 @@ public class RestWebMvcConfigurer implements WebMvcConfigurer {
         InternalResourceViewResolver viewResolver =
                 new InternalResourceViewResolver() ;
         viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix("WEB-INF/jsp/");
+        viewResolver.setPrefix("WEB-INF/pages/");
         viewResolver.setSuffix(".jsp");
         viewResolver.setOrder(Ordered.LOWEST_PRECEDENCE -10);
-        viewResolver.setContentType("application/xml;charset=UTF-8");
+        viewResolver.setContentType("text/xml;charset=UTF-8");
         return viewResolver ;
     }
 

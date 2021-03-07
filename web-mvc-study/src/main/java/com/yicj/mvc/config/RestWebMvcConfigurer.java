@@ -1,9 +1,9 @@
 package com.yicj.mvc.config;
 
-import com.yicj.mvc.http.converter.properties.PropertiesHttpMessageConverter;
 import com.yicj.mvc.model.User;
 import com.yicj.mvc.web.method.support.PropertiesHandlerMethodArgumentResolver;
 import com.yicj.mvc.web.method.support.PropertiesHandlerMethodReturnValueHandler;
+import com.yicj.mvc.web.servlet.CustomInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +15,7 @@ import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -85,17 +86,19 @@ public class RestWebMvcConfigurer implements WebMvcConfigurer {
     }
 
 
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new CustomInterceptor()) ;
+    }
+
     /**
      * 配置内容协商
      * @param configurer
      */
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-
         configurer.favorParameter(true) ;
         configurer.favorPathExtension(true) ;
-
-
     }
 
     @Override

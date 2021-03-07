@@ -16,6 +16,7 @@
         <module>web-mvc-study</module>
         <module>hello-world</module>
         <module>spring-boot-jsp</module>
+        <module>web-security-study</module>
     </modules>
 
     <parent>

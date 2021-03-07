@@ -40,6 +40,13 @@ public class HelloController {
         return user ;
     }
 
+    @GetMapping("/hello3")
+    @ResponseBody
+    public User hello3(User user){
+
+        return user ;
+    }
+
     @ResponseBody
     @GetMapping("/asyncHello")
     public DeferredResult<String> asyncHello(){
@@ -51,6 +58,9 @@ public class HelloController {
         });
         return result ;
     }
+
+
+
 
 
 

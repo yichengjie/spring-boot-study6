@@ -6,7 +6,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.context.request.WebRequestInterceptor;
 
 // 加入ioc后，访问资源并未执行
-@Component
+//@Component
 public class CustomWebRequestInterceptor implements WebRequestInterceptor {
 
     public CustomWebRequestInterceptor(){

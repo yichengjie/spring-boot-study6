@@ -15,12 +15,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Slf4j
+/*
 @ControllerAdvice(
     //指定拦截的包
     basePackages = {"com.yicj.mvc.controller.*"},
     // 限定被标注@Controller的类才被拦截
     annotations = Controller.class
-)
+)*/
 public class MyControllerAdvice {
     // 绑定格式化、参数转换规则和增加验证器等
     @InitBinder

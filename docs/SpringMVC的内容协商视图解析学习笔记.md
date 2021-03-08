@@ -20,11 +20,15 @@
     ```
 4. ViewResolver Bean列表
     ```text
-    a. InternalResourceViewResolver
-    b. ThymeleafViewResolver
-    ..
+   0 = {ContentNegotiatingViewResolver@5836} 
+   1 = {InternalResourceViewResolver@5842} 
+   2 = {BeanNameViewResolver@5843} 
+   3 = {ViewResolverComposite@5844} 
+   4 = {InternalResourceViewResolver@5845} 
     ```
-#### ContentNegotiatingViewResolver#resolveViewName流程
+5. DispatcherServlet#doDispatch => processDispatchResult => render => resolveViewName然后调用
+   ContentNegotiatingViewResolver#resolveViewName(viewName, locale)获取View对象
+#### ContentNegotiatingViewResolver#resolveViewName获取View对象流程
 1. ContentNegotiatingViewResolver#getMediaTypes(HttpServletRequest request)获取MediaType集合
     ```text
     1.1  ContentNegotiationManager#resolveMediaTypes从request中获取支持的MediaType集合，

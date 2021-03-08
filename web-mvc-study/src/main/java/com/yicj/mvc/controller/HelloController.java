@@ -3,6 +3,7 @@ package com.yicj.mvc.controller;
 import com.yicj.mvc.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.async.DeferredResult;
 
@@ -60,8 +61,12 @@ public class HelloController {
     }
 
 
-
-
-
+    @GetMapping("/beanNameView")
+    public String beanNameView(Model model){
+        // 添加一个Model属性
+        model.addAttribute("name", "BeanNameView") ;
+        // 返回ViewName，用于查找
+        return "beanNameViewBean" ;
+    }
 
 }

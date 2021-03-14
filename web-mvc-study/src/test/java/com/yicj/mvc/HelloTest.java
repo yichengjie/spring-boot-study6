@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class HelloTest {
 
@@ -78,5 +79,12 @@ public class HelloTest {
         while(second.hasNext()){
             System.out.print(second.next()+"    ");
         }
+    }
+
+    @Test
+    public void testRandom(){
+        Random random = new Random() ;
+        int i = random.nextInt(100);
+        System.out.println(i);
     }
 }

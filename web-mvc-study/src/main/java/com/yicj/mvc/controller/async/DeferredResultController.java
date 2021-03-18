@@ -26,7 +26,7 @@ public class DeferredResultController {
     private final BlockingQueue<DeferredResult<String>> queue = new ArrayBlockingQueue<>(5) ;
     private final Random random = new Random(59) ;
 
-    @Scheduled(fixedRate = 50)
+    @Scheduled(fixedRate = 500000)
     public void process() throws InterruptedException{
         log.info("=======================");
         DeferredResult<String> result = queue.take() ;

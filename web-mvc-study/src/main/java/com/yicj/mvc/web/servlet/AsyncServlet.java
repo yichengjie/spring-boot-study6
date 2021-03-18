@@ -33,7 +33,17 @@ public class AsyncServlet extends HttpServlet {
         asyncContext.addListener(new AsyncListener() {
             @Override
             public void onComplete(AsyncEvent event) throws IOException {
-                log.info("执行完成...");
+                String format = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
+                ServletResponse response = asyncContext.getResponse();
+                response.setContentType("text/plain;charset=UTF-8");
+                //获取字符流输出流
+                try {
+                    PrintWriter writer = response.getWriter();
+                    writer.println("Hello, world " + format);
+                    writer.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -56,20 +66,10 @@ public class AsyncServlet extends HttpServlet {
         });
 
         int time= random.nextInt(100) % 2 == 0 ? 1000 : 300 ;
-        CommonUtils.sleep(time, ()->{
-            // 模拟等待时间，rpc或db查询
-            String format = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
-            ServletResponse response = asyncContext.getResponse();
-            response.setContentType("text/plain;charset=UTF-8");
-            //获取字符流输出流
-            try {
-                PrintWriter writer = response.getWriter();
-                writer.println("Hello, world ["+time+"] " + format);
-                writer.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            asyncContext.complete();
+        // 模拟等待时间，rpc或db查询
+        CommonUtils.sleep(time,()->{
+
+            asyncContext.complete() ;
         });
     }
 }

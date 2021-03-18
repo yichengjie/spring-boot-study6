@@ -22,7 +22,8 @@ import java.util.concurrent.BlockingQueue;
 @RestController
 @EnableScheduling
 public class DeferredResultController {
-
+    //DeferredResult 原理解析
+    //https://juejin.cn/post/6934963596765954084
     private final BlockingQueue<DeferredResult<String>> queue = new ArrayBlockingQueue<>(5) ;
     private final Random random = new Random(59) ;
 

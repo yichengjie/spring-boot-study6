@@ -37,9 +37,9 @@ public class AsyncUpload2 extends HttpServlet {
             public void onAllDataRead() throws IOException {
                 byte[] content = out.toByteArray();
                 String contextAsTxt = new String(content, "ISO-8859-1") ;
-                String fileName = filename(contextAsTxt) ;
-                Range fileRange = fileRange(contextAsTxt, req.getContextPath()) ;
-                write(content, contextAsTxt.substring(0, file)) ;
+                //String fileName = filename(contextAsTxt) ;
+                //Range fileRange = fileRange(contextAsTxt, req.getContextPath()) ;
+                //write(content, contextAsTxt.substring(0, file)) ;
                 resp.getWriter().println("Upload Successfully");
                 ctx.complete();
             }

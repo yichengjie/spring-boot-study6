@@ -87,4 +87,20 @@ public class HelloTest {
         int i = random.nextInt(100);
         System.out.println(i);
     }
+
+    public String hello(){
+        return "hello" ;
+    }
+
+    public String hello(String name){
+        return "hello" ;
+    }
+
+    public String hello(Integer age){
+        return "hello" ;
+    }
+
+    public String hello(Object object){
+        return "hello" ;
+    }
 }

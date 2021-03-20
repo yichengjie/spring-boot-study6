@@ -1,4 +1,4 @@
-package com.yicj.study.web.servlet;
+package com.yicj.study.servlet.web.servlet;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -10,14 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-//https://blog.csdn.net/weixin_33738555/article/details/85438251
+
 @Slf4j
 @WebServlet("/postBody")
-public class ParameterCharacterEncodingServlet extends HttpServlet {
+public class ParameterCharacterEncodingServlet  extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //String method = req.getParameter("_method");
-        //log.info("method name : {}", method);
         final PrintWriter out = resp.getWriter();
         out.println("<!DOCTYPE html>");
         out.println("<html>");

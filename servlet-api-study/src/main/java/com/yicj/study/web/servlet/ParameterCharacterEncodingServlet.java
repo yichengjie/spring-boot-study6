@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-@Slf4j
+//https://blog.csdn.net/weixin_33738555/article/details/85438251
 @WebServlet("/postBody")
 public class ParameterCharacterEncodingServlet extends HttpServlet {
     @Override
@@ -21,7 +21,6 @@ public class ParameterCharacterEncodingServlet extends HttpServlet {
         out.println("<body>");
         String bodyContent = bodyContent(req.getReader());
         out.println(bodyContent);
-        log.info("=====> {}", bodyContent);
         out.println("</body>");
         out.println("</html>");
     }

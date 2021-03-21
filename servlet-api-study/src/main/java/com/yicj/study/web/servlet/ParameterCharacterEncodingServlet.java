@@ -34,7 +34,7 @@ public class ParameterCharacterEncodingServlet extends HttpServlet {
         String input = null ;
         while ((input = reader.readLine()) != null){
             builder.append(input) ;
-            builder.append("<br/>") ;
+            builder.append("\r\n") ;
         }
         return builder.toString();
     }

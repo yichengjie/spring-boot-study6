@@ -28,6 +28,15 @@ public class ParameterEncodeDecodeTest {
     }
 
     @Test
+    public void test21() throws UnsupportedEncodingException {
+        String info = "%E5%BC%A0%E4%B8%89" ;// UTF-8
+        String decode = URLDecoder.decode(info, "GBK");
+        log.info("====>  {}", decode);
+        String content = new String(decode.getBytes("GBK"), "UTF-8") ;
+        log.info("content : {}", content);//张三
+    }
+
+    @Test
     public void test3() throws UnsupportedEncodingException {
         String info = "%E5%BC%A0%E4%B8%89" ;
         byte[] bytes = info.getBytes("ISO-8859-1");

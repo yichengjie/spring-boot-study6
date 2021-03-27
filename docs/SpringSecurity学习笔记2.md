@@ -17,3 +17,7 @@
     13 = {ExceptionTranslationFilter@6270} 
     14 = {FilterSecurityInterceptor@6271} 
     ```
+3. 其他
+    ```text
+    AutowireBeanFactoryObjectPostProcessor
+    ```

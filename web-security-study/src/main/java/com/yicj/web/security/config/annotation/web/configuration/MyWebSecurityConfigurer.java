@@ -45,4 +45,5 @@ public class MyWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .maximumSessions(1)
         ;
     }
+
 }

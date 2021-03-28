@@ -7,6 +7,7 @@ import com.yicj.mvc.web.servlet.CustomInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.Ordered;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -120,6 +121,7 @@ public class RestWebMvcConfigurer implements WebMvcConfigurer {
     }
 
 
+
     @Bean
     @Profile("dev")
     public User user1(){
@@ -135,4 +137,6 @@ public class RestWebMvcConfigurer implements WebMvcConfigurer {
         user.setUsername("李四");
         return user ;
     }
+
+
 }

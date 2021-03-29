@@ -52,15 +52,16 @@
 4. 根据3中获取到的RequestResponseBodyMethodProcessor调用resolveArgument=>readWithMessageConverters
 5. 遍历RequestResponseBodyMethodProcessor中的HttpMessageConverter集合，调用canRead判断Converter是否能支持解析参数
     ```text
-    0 = {ByteArrayHttpMessageConverter@6254} 
-    1 = {StringHttpMessageConverter@6255} 
-    2 = {StringHttpMessageConverter@6256} 
-    3 = {ResourceHttpMessageConverter@6257} 
-    4 = {ResourceRegionHttpMessageConverter@6258} 
-    5 = {SourceHttpMessageConverter@6259} 
-    6 = {AllEncompassingFormHttpMessageConverter@6260} 
-    7 = {MappingJackson2HttpMessageConverter@6261} 
-    8 = {MappingJackson2HttpMessageConverter@6262} 
+    0 = {ByteArrayHttpMessageConverter@6458} 
+    1 = {StringHttpMessageConverter@6459} 
+    2 = {StringHttpMessageConverter@6460} 
+    3 = {ResourceHttpMessageConverter@6461} 
+    4 = {ResourceRegionHttpMessageConverter@6462} 
+    5 = {SourceHttpMessageConverter@6463} 
+    6 = {AllEncompassingFormHttpMessageConverter@6464} 
+    7 = {MappingJackson2HttpMessageConverter@6465} 
+    8 = {MappingJackson2HttpMessageConverter@6466} 
+    9 = {Jaxb2RootElementHttpMessageConverter@6467} 
     ``` 
 6. 通过MappingJackson2HttpMessageConverter读取数据
 #### 处理Controller返回结果

@@ -7,8 +7,16 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.authentication.configurers.provisioning.InMemoryUserDetailsManagerConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Slf4j
 @Configuration
@@ -38,6 +46,8 @@ public class MyWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .authenticated()
             .and()
             .formLogin()
+                //.successHandler(successHandler())
+                .defaultSuccessUrl("/success.html")
             .and()
             .httpBasic()
             .and()
@@ -45,5 +55,12 @@ public class MyWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .maximumSessions(1)
         ;
     }
+
+//    private SavedRequestAwareAuthenticationSuccessHandler successHandler(){
+//        SavedRequestAwareAuthenticationSuccessHandler handler = new SavedRequestAwareAuthenticationSuccessHandler() ;
+//        handler.setDefaultTargetUrl("/index");
+//        handler.setTargetUrlParameter("target");
+//        return handler ;
+//    }
 
 }

@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +29,14 @@ public class MyWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         log.info("===> init passwordEncoder !");
         return new BCryptPasswordEncoder() ;
     }
-/*    @Override
+
+    @Bean
+    public HttpSessionEventPublisher httpSessionEventPublisher(){
+
+        return new HttpSessionEventPublisher() ;
+    }
+
+    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         InMemoryUserDetailsManagerConfigurer<AuthenticationManagerBuilder> userConfig =
                 auth.inMemoryAuthentication().passwordEncoder(passwordEncoder());
@@ -38,7 +46,7 @@ public class MyWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         userConfig.withUser("user")
                 .password(passwordEncoder().encode("123"))
                 .authorities("ROLE_USER");
-    }*/
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -57,6 +65,7 @@ public class MyWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
             .and()
             .sessionManagement()
                 .maximumSessions(1)
+                .maxSessionsPreventsLogin(true)
         ;
     }
 

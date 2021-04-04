@@ -28,7 +28,7 @@ public class MyWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         log.info("===> init passwordEncoder !");
         return new BCryptPasswordEncoder() ;
     }
-    @Override
+/*    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         InMemoryUserDetailsManagerConfigurer<AuthenticationManagerBuilder> userConfig =
                 auth.inMemoryAuthentication().passwordEncoder(passwordEncoder());
@@ -38,7 +38,7 @@ public class MyWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         userConfig.withUser("user")
                 .password(passwordEncoder().encode("123"))
                 .authorities("ROLE_USER");
-    }
+    }*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

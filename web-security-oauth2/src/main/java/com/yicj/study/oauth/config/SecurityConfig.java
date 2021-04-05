@@ -10,11 +10,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/oauth2/authorization/github").permitAll()
+                //.antMatchers("/oauth2/authorization/github").permitAll()
                 .anyRequest().authenticated()
                 //.and()
                 //.formLogin()
-                .and()
+                /*.and()
                 .exceptionHandling()
                     .authenticationEntryPoint( (request, resp, authException) -> {
                         resp.setStatus(HttpStatus.UNAUTHORIZED.value());
@@ -23,8 +23,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .accessDeniedHandler( (req, resp, ex) -> {
                         resp.setStatus(HttpStatus.FORBIDDEN.value());
                         resp.getWriter().write("forbidden");
-                    })
+                    })*/
                 .and()
-                .oauth2Login() ;
+                //.oauth2Login() ;
+                .httpBasic()
+                .and()
+                .csrf().disable();
     }
 }

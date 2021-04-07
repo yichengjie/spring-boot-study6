@@ -20,6 +20,7 @@
         <module>servlet-api-study</module>
         <module>spring-boot-servlet</module>
         <module>web-security-oauth2</module>
+        <module>web-mvc-study2</module>
     </modules>
 
     <parent>

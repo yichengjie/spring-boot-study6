@@ -1,6 +1,7 @@
 package com.yicj.mvc.controller;
 
 import com.yicj.mvc.model.MyData;
+import com.yicj.mvc.model.MyData2;
 import com.yicj.mvc.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -73,14 +74,14 @@ public class HelloController {
     }
 
     @GetMapping("/myDataResponseEntity")
-    public ResponseEntity<MyData> myDataResponseEntity(){
+    public ResponseEntity<MyData2> myDataResponseEntity(){
         return ResponseEntity.status(HttpStatus.OK)
                 .header("Test", "For Test")
                 .body(getMyData()) ;
     }
 
-    private MyData getMyData(){
-        MyData myData = new MyData();
+    private MyData2 getMyData(){
+        MyData2 myData = new MyData2();
         myData.setFirstName("yi");
         myData.setLastName("cj");
         return myData ;

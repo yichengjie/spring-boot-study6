@@ -1,7 +1,10 @@
 package com.yicj.mvc.controller;
 
+import com.yicj.mvc.model.MyData;
 import com.yicj.mvc.model.User;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -67,6 +70,20 @@ public class HelloController {
         model.addAttribute("name", "BeanNameView") ;
         // 返回ViewName，用于查找
         return "beanNameViewBean" ;
+    }
+
+    @GetMapping("/myDataResponseEntity")
+    public ResponseEntity<MyData> myDataResponseEntity(){
+        return ResponseEntity.status(HttpStatus.OK)
+                .header("Test", "For Test")
+                .body(getMyData()) ;
+    }
+
+    private MyData getMyData(){
+        MyData myData = new MyData();
+        myData.setFirstName("yi");
+        myData.setLastName("cj");
+        return myData ;
     }
 
 }

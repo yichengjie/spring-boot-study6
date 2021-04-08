@@ -1,9 +1,12 @@
 package com.yicj.study.mvc.controller;
 
 import com.yicj.study.mvc.model.MyData;
+import com.yicj.study.mvc.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +25,20 @@ public class HelloController {
     @ModelAttribute("data")
     public MyData hello2(){
         return getMyData() ;
+    }
+
+
+    @ResponseBody
+    @GetMapping("/converter")
+    public User getUserByConverter(User user){
+        return user ;
+    }
+
+
+    @ResponseBody
+    @PostMapping("/user")
+    public User getUser(User user){
+        return user ;
     }
 
     private MyData getMyData(){

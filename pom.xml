@@ -21,6 +21,7 @@
         <module>spring-boot-servlet</module>
         <module>web-security-oauth2</module>
         <module>web-mvc-study2</module>
+        <module>web-shiro-study</module>
     </modules>
 
     <parent>
@@ -52,6 +53,12 @@
                 <groupId>joda-time</groupId>
                 <artifactId>joda-time</artifactId>
                 <version>2.9.9</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>1.7.1</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

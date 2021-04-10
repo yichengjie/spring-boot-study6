@@ -11,7 +11,7 @@ public class MyRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-        simpleAuthorizationInfo.addRole("user");
+        simpleAuthorizationInfo.addStringPermission("user");
         return simpleAuthorizationInfo;
     }
 

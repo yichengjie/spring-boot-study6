@@ -31,8 +31,10 @@ public class ShiroConfig {
         shiroFilter.setSuccessUrl("/success.html");
         shiroFilter.setUnauthorizedUrl("/unauthorized.html");
         Map<String, String> map = new HashMap<String, String>();
-        map.put("/login","anon") ;
-        map.put("/**", "authc,perms[user]");
+        //map.put("/login","anon") ;
+        map.put("/admin","authc,perms[admin]") ;
+        map.put("/hello","authc,perms[user]") ;
+        map.put("/**", "authc");
         shiroFilter.setFilterChainDefinitionMap(map);
         return shiroFilter ;
     }

@@ -1,6 +1,7 @@
 package com.yicj.study.shiro.config;
 
 
+import com.yicj.study.shiro.shiro.MyRealm;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -14,8 +15,14 @@ import java.util.Map;
 public class ShiroConfig {
 
     @Bean
+    public MyRealm myRealm(){
+        return new MyRealm() ;
+    }
+
+
+    @Bean
     public SecurityManager securityManager(){
-        return new DefaultWebSecurityManager() ;
+        return new DefaultWebSecurityManager(myRealm()) ;
     }
 
     @Bean
@@ -26,7 +33,7 @@ public class ShiroConfig {
         shiroFilter.setSuccessUrl("/success.html");
         shiroFilter.setUnauthorizedUrl("/unauthorized.html");
         Map<String, String> map = new HashMap<String, String>();
-        map.put("/login", "anon");
+        map.put("/postLogin","anon") ;
         map.put("/**", "authc");
         shiroFilter.setFilterChainDefinitionMap(map);
         return shiroFilter ;

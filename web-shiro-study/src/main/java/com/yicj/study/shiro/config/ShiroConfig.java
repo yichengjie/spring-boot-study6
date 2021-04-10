@@ -27,12 +27,12 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean() ;
         shiroFilter.setSecurityManager(securityManager());
         // 这个这个地址POST方式提交作为登录处理页面
-        shiroFilter.setLoginUrl("/login.html");
+        shiroFilter.setLoginUrl("/login");
         shiroFilter.setSuccessUrl("/success.html");
         shiroFilter.setUnauthorizedUrl("/unauthorized.html");
         Map<String, String> map = new HashMap<String, String>();
-        map.put("/postLogin","anon") ;
-        map.put("/**", "authc");
+        map.put("/login","anon") ;
+        map.put("/**", "authc,perms[user]");
         shiroFilter.setFilterChainDefinitionMap(map);
         return shiroFilter ;
     }

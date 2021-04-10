@@ -18,17 +18,15 @@ public class ShiroConfig {
     public MyRealm myRealm(){
         return new MyRealm() ;
     }
-
-
     @Bean
     public SecurityManager securityManager(){
         return new DefaultWebSecurityManager(myRealm()) ;
     }
-
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(){
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean() ;
         shiroFilter.setSecurityManager(securityManager());
+        // 这个这个地址POST方式提交作为登录处理页面
         shiroFilter.setLoginUrl("/login.html");
         shiroFilter.setSuccessUrl("/success.html");
         shiroFilter.setUnauthorizedUrl("/unauthorized.html");
@@ -38,5 +36,4 @@ public class ShiroConfig {
         shiroFilter.setFilterChainDefinitionMap(map);
         return shiroFilter ;
     }
-
 }

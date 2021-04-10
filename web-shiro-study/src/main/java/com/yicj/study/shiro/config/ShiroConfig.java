@@ -2,6 +2,7 @@ package com.yicj.study.shiro.config;
 
 
 import com.yicj.study.shiro.shiro.MyRealm;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -16,7 +17,12 @@ public class ShiroConfig {
 
     @Bean
     public MyRealm myRealm(){
-        return new MyRealm() ;
+        MyRealm myRealm = new MyRealm() ;
+        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher("MD5") ;
+        credentialsMatcher.setHashIterations(1024);
+        credentialsMatcher.setHashSalted(true);
+        myRealm.setCredentialsMatcher(credentialsMatcher);
+        return myRealm ;
     }
     @Bean
     public SecurityManager securityManager(){
@@ -28,10 +34,10 @@ public class ShiroConfig {
         shiroFilter.setSecurityManager(securityManager());
         // 这个这个地址POST方式提交作为登录处理页面
         shiroFilter.setLoginUrl("/login");
-        shiroFilter.setSuccessUrl("/success.html");
+        shiroFilter.setSuccessUrl("/index.html");
         shiroFilter.setUnauthorizedUrl("/unauthorized.html");
         Map<String, String> map = new HashMap<String, String>();
-        //map.put("/login","anon") ;
+        map.put("/logout","logout") ;
         map.put("/admin","authc,perms[admin]") ;
         map.put("/hello","authc,perms[user]") ;
         map.put("/**", "authc");

@@ -5,6 +5,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 
 public class MyRealm extends AuthorizingRealm {
 
@@ -17,15 +18,15 @@ public class MyRealm extends AuthorizingRealm {
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        String password = new String(((char[]) token.getCredentials()));
+        //String password = new String(((char[]) token.getCredentials()));
         String username = token.getPrincipal().toString();
-        if (!"yicj".equals(username)) {
+        /*if (!"yicj".equals(username)) {
             throw new UnknownAccountException("用户不存在");
         }
         if (!"123".equals(password)) {
             throw new IncorrectCredentialsException("密码不正确");
-        }
-        return new SimpleAuthenticationInfo(username, password, getName());
+        }*/
+        return new SimpleAuthenticationInfo("yicj", "9c9e21dfa4b664cfebc32093cb3555bb",ByteSource.Util.bytes("yicj"), getName());
     }
 
 

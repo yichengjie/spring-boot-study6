@@ -8,6 +8,7 @@ import javax.servlet.ServletResponse;
 public class SsoFilter extends AccessControlFilter {
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
+        // 如果token存在，且token合法，则返回true
         return false;
     }
 

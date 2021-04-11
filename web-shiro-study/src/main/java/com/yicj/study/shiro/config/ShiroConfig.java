@@ -40,6 +40,7 @@ public class ShiroConfig {
         shiroFilter.setSuccessUrl("/index.html");
         shiroFilter.setUnauthorizedUrl("/unauthorized.html");
         Map<String, String> map = new HashMap<String, String>();
+        map.put("/favicon.ico","anon") ;
         map.put("/logout","logout") ;
         map.put("/admin","authc,perms[admin]") ;
         map.put("/hello","authc,perms[user]") ;

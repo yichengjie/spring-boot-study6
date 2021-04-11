@@ -122,19 +122,21 @@
     </body>
     ```
 7. 补充知识点
-    ```text
+    ```java
     //默认过滤器集合
-    anon(AnonymousFilter.class),
-    authc(FormAuthenticationFilter.class),
-    authcBasic(BasicHttpAuthenticationFilter.class),
-    authcBearer(BearerHttpAuthenticationFilter.class),
-    logout(LogoutFilter.class),
-    noSessionCreation(NoSessionCreationFilter.class),
-    perms(PermissionsAuthorizationFilter.class),
-    port(PortFilter.class),
-    rest(HttpMethodPermissionFilter.class),
-    roles(RolesAuthorizationFilter.class),
-    ssl(SslFilter.class),
-    user(UserFilter.class),
-    invalidRequest(InvalidRequestFilter.class);
+    public enum DefaultFilter {
+        anon(AnonymousFilter.class),
+        authc(FormAuthenticationFilter.class),
+        authcBasic(BasicHttpAuthenticationFilter.class),
+        authcBearer(BearerHttpAuthenticationFilter.class),
+        logout(LogoutFilter.class),
+        noSessionCreation(NoSessionCreationFilter.class),
+        perms(PermissionsAuthorizationFilter.class),
+        port(PortFilter.class),
+        rest(HttpMethodPermissionFilter.class),
+        roles(RolesAuthorizationFilter.class),
+        ssl(SslFilter.class),
+        user(UserFilter.class),
+        invalidRequest(InvalidRequestFilter.class);
+    }
     ```

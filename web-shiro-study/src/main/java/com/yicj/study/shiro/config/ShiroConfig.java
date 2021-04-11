@@ -20,20 +20,23 @@ public class ShiroConfig {
         MyRealm myRealm = new MyRealm() ;
         HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher("MD5") ;
         credentialsMatcher.setHashIterations(1024);
-        credentialsMatcher.setHashSalted(true);
         myRealm.setCredentialsMatcher(credentialsMatcher);
         return myRealm ;
     }
+
     @Bean
     public SecurityManager securityManager(){
-        return new DefaultWebSecurityManager(myRealm()) ;
+        DefaultWebSecurityManager webSecurityManager = new DefaultWebSecurityManager() ;
+        webSecurityManager.setRealm(myRealm());
+        return webSecurityManager ;
     }
+
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(){
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean() ;
         shiroFilter.setSecurityManager(securityManager());
         // 这个这个地址POST方式提交作为登录处理页面
-        shiroFilter.setLoginUrl("/login");
+        shiroFilter.setLoginUrl("/doLogin");
         shiroFilter.setSuccessUrl("/index.html");
         shiroFilter.setUnauthorizedUrl("/unauthorized.html");
         Map<String, String> map = new HashMap<String, String>();

@@ -18,35 +18,12 @@ public class MyRealm extends AuthorizingRealm {
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        //String password = new String(((char[]) token.getCredentials()));
         String username = token.getPrincipal().toString();
-        /*if (!"yicj".equals(username)) {
-            throw new UnknownAccountException("用户不存在");
+        if ("yicj".equalsIgnoreCase(username)){
+            //1. 根据用户名查询数据库，获取用户信息
+            //2. 根据数据库中查询到得用户信息，构建AuthenticationInfo信息并返回
+            return new SimpleAuthenticationInfo("yicj", "9c9e21dfa4b664cfebc32093cb3555bb",ByteSource.Util.bytes("yicj"), getName());
         }
-        if (!"123".equals(password)) {
-            throw new IncorrectCredentialsException("密码不正确");
-        }*/
-        return new SimpleAuthenticationInfo("yicj", "9c9e21dfa4b664cfebc32093cb3555bb",ByteSource.Util.bytes("yicj"), getName());
+        return null ;
     }
-
-
-   /* public String getName() {
-        return "MyRealm";
-    }
-    public boolean supports(AuthenticationToken token) {
-        return token instanceof UsernamePasswordToken;
-    }
-    @Override
-    public AuthenticationInfo getAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        String password = new String(((char[]) token.getCredentials()));
-        String username = token.getPrincipal().toString();
-        if (!"yicj".equals(username)) {
-            throw new UnknownAccountException("用户不存在");
-        }
-        if (!"123".equals(password)) {
-            throw new IncorrectCredentialsException("密码不正确");
-        }
-        return new SimpleAuthenticationInfo(username, password, getName());
-    }*/
-
 }

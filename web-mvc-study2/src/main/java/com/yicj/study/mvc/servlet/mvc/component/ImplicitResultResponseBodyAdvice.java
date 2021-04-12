@@ -1,6 +1,7 @@
-package com.yicj.study.mvc.servlet.mvc;
+package com.yicj.study.mvc.servlet.mvc.component;
 
-import com.yicj.study.mvc.servlet.mvc.anno.ResultEnhancerTag;
+import com.yicj.study.mvc.model.JsonResult;
+import com.yicj.study.mvc.servlet.mvc.annotation.ResultEnhancerTag;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -8,10 +9,7 @@ import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
-
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
 
 @ControllerAdvice
 public class ImplicitResultResponseBodyAdvice implements ResponseBodyAdvice<Object> {
@@ -22,20 +20,20 @@ public class ImplicitResultResponseBodyAdvice implements ResponseBodyAdvice<Obje
 
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
-        Map<String,Object> res = new HashMap<>();
+        JsonResult res = new JsonResult();
         String flag = String.valueOf(body);
         Method method = returnType.getMethod();
         ResultEnhancerTag annotation = method.getAnnotation(ResultEnhancerTag.class);
         if ("true".equalsIgnoreCase(flag)){
-            res.put("code",200);
-            res.put("msg",annotation.success()) ;
+            res.setCode(200);
+            res.setMsg(annotation.success());
         }else if ("false".equalsIgnoreCase(flag)){
-            res.put("code",500);
-            res.put("msg",annotation.error()) ;
+            res.setCode(500);
+            res.setMsg(annotation.error()) ;
         }else {
-            res.put("code",200);
-            res.put("msg",annotation.success());
-            res.put("data",body);
+            res.setCode(200);
+            res.setMsg(annotation.success());
+            res.setObj(body);
         }
         return res ;
     }

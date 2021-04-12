@@ -1,4 +1,4 @@
-package com.yicj.study.mvc.servlet.mvc.anno;
+package com.yicj.study.mvc.servlet.mvc.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

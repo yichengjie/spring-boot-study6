@@ -2,7 +2,7 @@ package com.yicj.study.mvc.controller;
 
 import com.yicj.study.mvc.model.MyData;
 import com.yicj.study.mvc.model.User;
-import com.yicj.study.mvc.servlet.mvc.anno.ResultEnhancerTag;
+import com.yicj.study.mvc.servlet.mvc.annotation.ResultEnhancerTag;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;

@@ -25,6 +25,7 @@
         <module>web-shiro-sso-study</module>
         <module>hello-world-web</module>
         <module>mvc-common-handler-starter</module>
+        <module>hello-redis-study</module>
     </modules>
 
     <parent>

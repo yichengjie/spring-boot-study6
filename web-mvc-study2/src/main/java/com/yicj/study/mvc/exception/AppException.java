@@ -1,4 +1,4 @@
-package com.yicj.study.mvc.servlet.mvc.exception;
+package com.yicj.study.mvc.exception;
 
 public class AppException extends RuntimeException {
 

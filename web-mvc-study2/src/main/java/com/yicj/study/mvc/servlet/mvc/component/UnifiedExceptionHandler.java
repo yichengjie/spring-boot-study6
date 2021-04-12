@@ -1,7 +1,7 @@
 package com.yicj.study.mvc.servlet.mvc.component;
 
 import com.yicj.study.mvc.model.JsonResult;
-import com.yicj.study.mvc.servlet.mvc.exception.AppException;
+import com.yicj.study.mvc.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

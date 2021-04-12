@@ -55,8 +55,16 @@ public class HelloController {
     public boolean hello6(){
         boolean flag = false ;
         if (!flag){
-            throw new AppException("数据库操作出错", new RuntimeException("test")) ;
+            throw new AppException("数据库操作出错") ;
         }
+        return true ;
+    }
+
+
+    @ResponseBody
+    @GetMapping("/hello7")
+    public boolean hello7(){
+        int a = 1/0 ;
         return true ;
     }
 

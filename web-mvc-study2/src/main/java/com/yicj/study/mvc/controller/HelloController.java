@@ -2,6 +2,7 @@ package com.yicj.study.mvc.controller;
 
 import com.yicj.study.mvc.model.MyData;
 import com.yicj.study.mvc.model.User;
+import com.yicj.study.mvc.servlet.mvc.anno.OperatorStatusTag;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,7 +30,28 @@ public class HelloController {
 
 
     @ResponseBody
+    @GetMapping("/hello3")
+    @OperatorStatusTag(success = "删除用户信息成功")
+    public boolean hello3(){
+        return true;
+    }
+
+    @ResponseBody
+    @GetMapping("/hello4")
+    @OperatorStatusTag(success = "删除用户信息成功",error = "删除用户信息失败")
+    public boolean hello4(){
+        return false ;
+    }
+
+    @ResponseBody
+    @GetMapping("/hello5")
+    public Boolean hello5(){
+        return false ;
+    }
+
+    @ResponseBody
     @GetMapping("/converter")
+    @OperatorStatusTag(success = "删除用户信息成功")
     public User getUserByConverter(User user){
         return user ;
     }

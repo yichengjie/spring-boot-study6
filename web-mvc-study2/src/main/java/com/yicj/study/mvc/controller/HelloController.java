@@ -73,6 +73,13 @@ public class HelloController {
     }
 
     @ResponseBody
+    @GetMapping(value = "/hello8")
+    @ResultEnhancerTag(success = "删除用户信息成功",error = "删除用户信息失败")
+    public String hello8(){
+        return "hello world" ;
+    }
+
+    @ResponseBody
     @GetMapping("/converter")
     @ResultEnhancerTag(success = "删除用户信息成功")
     public User getUserByConverter(){

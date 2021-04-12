@@ -24,6 +24,10 @@ public class ImplicitResultResponseBodyAdvice implements ResponseBodyAdvice<Obje
         JsonResult res = new JsonResult();
         String flag = String.valueOf(body);
         Method method = returnType.getMethod();
+        // String 类型的结果不做处理
+        if (method.getReturnType().isAssignableFrom(String.class)){
+            return body ;
+        }
         ResultEnhancerTag annotation = method.getAnnotation(ResultEnhancerTag.class);
         if ("true".equalsIgnoreCase(flag)){
             res.setCode(200) ;

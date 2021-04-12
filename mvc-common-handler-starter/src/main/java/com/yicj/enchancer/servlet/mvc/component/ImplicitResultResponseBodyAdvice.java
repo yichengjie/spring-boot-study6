@@ -34,10 +34,13 @@ public class ImplicitResultResponseBodyAdvice implements ResponseBodyAdvice<Obje
         Map<String, Object> res = new HashMap<>();
         String flag = String.valueOf(body);
         Method method = returnType.getMethod();
+        // String 类型的结果不做处理
+        if (method.getReturnType().isAssignableFrom(String.class)){
+            return body ;
+        }
         String statusFieldName = mvcCommonHandlerProperties.getResult().getStatusFieldName() ;
         String tipFieldName = mvcCommonHandlerProperties.getResult().getTipFieldName() ;
         String dataFieldName = mvcCommonHandlerProperties.getResult().getDataFieldName() ;
-
         ResultEnhancerTag annotation = method.getAnnotation(ResultEnhancerTag.class);
         if ("true".equalsIgnoreCase(flag)){
             res.put(statusFieldName,200) ;

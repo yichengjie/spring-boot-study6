@@ -15,7 +15,7 @@ public class HelloController {
         return true ;
     }
 
-    @GetMapping("/hello2")
+    @GetMapping(value = "/hello2", produces = {"application/json"})
     @ResultEnhancerTag(success = "删除用户成功", error = "删除用户失败")
     public String hello2(){
         return "my data" ;

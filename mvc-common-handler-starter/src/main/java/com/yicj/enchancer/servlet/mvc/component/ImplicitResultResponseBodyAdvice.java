@@ -1,5 +1,6 @@
 package com.yicj.enchancer.servlet.mvc.component;
 
+import com.yicj.enchancer.properties.MvcCommonHandlerProperties;
 import com.yicj.enchancer.servlet.mvc.annotation.ResultEnhancerTag;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -15,6 +16,14 @@ import java.util.Map;
 
 @ControllerAdvice
 public class ImplicitResultResponseBodyAdvice implements ResponseBodyAdvice<Object> {
+
+    private final MvcCommonHandlerProperties mvcCommonHandlerProperties ;
+
+    public ImplicitResultResponseBodyAdvice(MvcCommonHandlerProperties mvcCommonHandlerProperties) {
+        this.mvcCommonHandlerProperties = mvcCommonHandlerProperties;
+    }
+
+
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
         return returnType.getMethod().isAnnotationPresent(ResultEnhancerTag.class) ;
@@ -25,17 +34,21 @@ public class ImplicitResultResponseBodyAdvice implements ResponseBodyAdvice<Obje
         Map<String, Object> res = new HashMap<>();
         String flag = String.valueOf(body);
         Method method = returnType.getMethod();
+        String statusFieldName = mvcCommonHandlerProperties.getResult().getStatusFieldName() ;
+        String tipFieldName = mvcCommonHandlerProperties.getResult().getTipFieldName() ;
+        String dataFieldName = mvcCommonHandlerProperties.getResult().getDataFieldName() ;
+
         ResultEnhancerTag annotation = method.getAnnotation(ResultEnhancerTag.class);
         if ("true".equalsIgnoreCase(flag)){
-            res.put("code",200) ;
-            res.put("msg",annotation.success());
+            res.put(statusFieldName,200) ;
+            res.put(tipFieldName,annotation.success());
         }else if ("false".equalsIgnoreCase(flag)){
-            res.put("code",500);
-            res.put("msg",annotation.error()) ;
+            res.put(statusFieldName,500);
+            res.put(tipFieldName,annotation.error()) ;
         }else {
-            res.put("code", 200);
-            res.put("msg", annotation.success());
-            res.put("obj", body);
+            res.put(statusFieldName, 200);
+            res.put(tipFieldName, annotation.success());
+            res.put(dataFieldName, body);
         }
         return res ;
     }

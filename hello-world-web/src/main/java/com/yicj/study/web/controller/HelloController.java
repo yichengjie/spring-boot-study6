@@ -14,4 +14,10 @@ public class HelloController {
     public boolean hello(){
         return true ;
     }
+
+    @GetMapping("/hello2")
+    @ResultEnhancerTag(success = "删除用户成功", error = "删除用户失败")
+    public String hello2(){
+        return "my data" ;
+    }
 }

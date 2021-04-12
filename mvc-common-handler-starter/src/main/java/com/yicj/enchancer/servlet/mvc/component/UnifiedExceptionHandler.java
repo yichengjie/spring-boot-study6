@@ -1,6 +1,7 @@
 package com.yicj.enchancer.servlet.mvc.component;
 
 import com.yicj.enchancer.exception.AppException;
+import com.yicj.enchancer.properties.MvcCommonHandlerProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -11,6 +12,12 @@ import java.util.Map;
 @Slf4j
 @ControllerAdvice
 public class UnifiedExceptionHandler {
+
+	private final MvcCommonHandlerProperties properties ;
+
+	public UnifiedExceptionHandler(MvcCommonHandlerProperties properties) {
+		this.properties = properties;
+	}
 
 	@ResponseBody
     @ExceptionHandler(value = AppException.class)

@@ -22,12 +22,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.yicj.enchancer</groupId>
-            <artifactId>mvc-common-handler</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>provided</scope>

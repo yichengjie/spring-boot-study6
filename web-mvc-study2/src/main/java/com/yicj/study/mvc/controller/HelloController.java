@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -50,6 +52,8 @@ public class HelloController {
         return false ;
     }
 
+
+
     @ResponseBody
     @GetMapping("/hello6")
     public boolean hello6(){
@@ -71,8 +75,28 @@ public class HelloController {
     @ResponseBody
     @GetMapping("/converter")
     @ResultEnhancerTag(success = "删除用户信息成功")
-    public User getUserByConverter(User user){
+    public User getUserByConverter(){
+        User user = new User() ;
+        user.setUserName("yicj");
+        user.setNote("test");
+        user.setId(1001L);
         return user ;
+    }
+
+    @ResponseBody
+    @GetMapping("/converter2")
+    @ResultEnhancerTag(success = "删除用户信息成功")
+    public List<User> getUserByConverter2(){
+        User user = new User() ;
+        user.setUserName("yicj");
+        user.setNote("test");
+        user.setId(1001L);
+        //
+        User user2 = new User() ;
+        user2.setUserName("yicj2");
+        user2.setNote("test2");
+        user2.setId(1003L);
+        return Arrays.asList(user, user2);
     }
 
 

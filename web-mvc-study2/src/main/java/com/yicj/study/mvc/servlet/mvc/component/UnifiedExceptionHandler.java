@@ -14,9 +14,9 @@ public class UnifiedExceptionHandler {
 	@ResponseBody
     @ExceptionHandler(value = AppException.class)
 	public JsonResult exceptionHandler(AppException e){
-		log.error("global catch error : {}",e.getMessage());
+		log.error("business check tip : {}",e.getMessage());
 		JsonResult res = new JsonResult() ;
-		res.setCode(500);
+		res.setCode(e.getCode());
 		res.setMsg(e.getMessage());
        	return res;
     }
@@ -25,10 +25,10 @@ public class UnifiedExceptionHandler {
 	@ResponseBody
 	@ExceptionHandler(value =Exception.class)
 	public JsonResult exceptionHandler(Exception e){
-		log.error("global catch error ",e);
+		log.error("system error ",e);
 		JsonResult res = new JsonResult() ;
 		res.setCode(500);
-		res.setMsg("系统异常，请通知管理员！");
+		res.setMsg("未知异常,请联系系统管理员！");
 		return res;
 	}
 }

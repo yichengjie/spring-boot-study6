@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import java.lang.reflect.Method;
 
+
 @ControllerAdvice
 public class ImplicitResultResponseBodyAdvice implements ResponseBodyAdvice<Object> {
     @Override
@@ -25,7 +26,7 @@ public class ImplicitResultResponseBodyAdvice implements ResponseBodyAdvice<Obje
         Method method = returnType.getMethod();
         ResultEnhancerTag annotation = method.getAnnotation(ResultEnhancerTag.class);
         if ("true".equalsIgnoreCase(flag)){
-            res.setCode(200);
+            res.setCode(200) ;
             res.setMsg(annotation.success());
         }else if ("false".equalsIgnoreCase(flag)){
             res.setCode(500);

@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface OperatorStatusTag {
+public @interface ResultEnhancerTag {
     String success () default "操作成功";
     String error() default "操作失败";
 }

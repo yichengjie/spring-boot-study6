@@ -1,10 +1,7 @@
 package com.yicj.study.mvc.servlet.mvc;
 
-import com.yicj.study.mvc.controller.HelloController;
-import com.yicj.study.mvc.model.UserInfo;
-import com.yicj.study.mvc.servlet.mvc.anno.OperatorStatusTag;
+import com.yicj.study.mvc.servlet.mvc.anno.ResultEnhancerTag;
 import org.springframework.core.MethodParameter;
-import org.springframework.core.ResolvableType;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
@@ -20,7 +17,7 @@ import java.util.Map;
 public class ImplicitResultResponseBodyAdvice implements ResponseBodyAdvice<Object> {
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
-        return returnType.getMethod().isAnnotationPresent(OperatorStatusTag.class) ;
+        return returnType.getMethod().isAnnotationPresent(ResultEnhancerTag.class) ;
     }
 
     @Override
@@ -28,7 +25,7 @@ public class ImplicitResultResponseBodyAdvice implements ResponseBodyAdvice<Obje
         Map<String,Object> res = new HashMap<>();
         String flag = String.valueOf(body);
         Method method = returnType.getMethod();
-        OperatorStatusTag annotation = method.getAnnotation(OperatorStatusTag.class);
+        ResultEnhancerTag annotation = method.getAnnotation(ResultEnhancerTag.class);
         if ("true".equalsIgnoreCase(flag)){
             res.put("code",200);
             res.put("msg",annotation.success()) ;

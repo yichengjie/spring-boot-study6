@@ -3,6 +3,7 @@ package com.yicj.study.mvc.controller;
 import com.yicj.study.mvc.model.MyData;
 import com.yicj.study.mvc.model.User;
 import com.yicj.study.mvc.servlet.mvc.annotation.ResultEnhancerTag;
+import com.yicj.study.mvc.servlet.mvc.exception.AppException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -47,6 +48,16 @@ public class HelloController {
     @GetMapping("/hello5")
     public Boolean hello5(){
         return false ;
+    }
+
+    @ResponseBody
+    @GetMapping("/hello6")
+    public boolean hello6(){
+        boolean flag = false ;
+        if (!flag){
+            throw new AppException("数据库操作出错", new RuntimeException("test")) ;
+        }
+        return true ;
     }
 
     @ResponseBody

@@ -23,6 +23,7 @@
         <module>web-mvc-study2</module>
         <module>web-shiro-study</module>
         <module>web-shiro-sso-study</module>
+        <module>hello-world-web</module>
     </modules>
 
     <parent>

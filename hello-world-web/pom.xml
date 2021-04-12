@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>web-mvc-study2</artifactId>
+    <artifactId>hello-world-web</artifactId>
 
     <dependencies>
         <dependency>
@@ -20,13 +20,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.yicj.enchancer</groupId>
             <artifactId>mvc-common-handler</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -63,4 +61,6 @@
             </plugin>
         </plugins>
     </build>
+
+
 </project>

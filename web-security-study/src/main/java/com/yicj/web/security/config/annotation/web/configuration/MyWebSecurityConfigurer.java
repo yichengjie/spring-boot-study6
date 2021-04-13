@@ -42,16 +42,23 @@ public class MyWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 auth.inMemoryAuthentication().passwordEncoder(passwordEncoder());
         userConfig.withUser("admin")
                 .password(passwordEncoder().encode("123"))
-                .roles("USER","ADMIN");
+                .roles("USER1","ADMIN");
         userConfig.withUser("user")
                 .password(passwordEncoder().encode("123"))
-                .authorities("ROLE_USER");
+                .roles("USER2");
+        userConfig.withUser("yicj")
+                .password(passwordEncoder().encode("123"))
+                .roles("USER3");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
+                .antMatchers("/hello1").hasRole("USER1")
+                .antMatchers("/hello2").hasRole("USER2")
+                .antMatchers("/hello3").hasRole("USER3")
+                .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
             .and()

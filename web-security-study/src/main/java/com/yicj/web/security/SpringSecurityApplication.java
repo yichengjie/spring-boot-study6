@@ -23,4 +23,22 @@ public class SpringSecurityApplication {
     public String hello(){
         return "Hello world" ;
     }
+
+    @ResponseBody
+    @RequestMapping("/hello2")
+    public String hello2(){
+        return "Hello world" ;
+    }
+
+    @ResponseBody
+    @RequestMapping("/hello3")
+    public String hello3(){
+        return "Hello world" ;
+    }
+
+    @ResponseBody
+    @RequestMapping("/admin")
+    public String admin(){
+        return "Hello world" ;
+    }
 }

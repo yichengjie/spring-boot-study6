@@ -6,6 +6,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
 
 @Configuration
@@ -33,9 +34,14 @@ public class RedisConfig {
         return connectionFactory ;
     }
 
-    @Bean
+    @Bean("redisTemplate")
     public RedisTemplate<Object, Object> initRedisTemplate(){
         RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>() ;
+        RedisSerializer<String> stringSerializer = redisTemplate.getStringSerializer();
+        // 设置字符串序列化器，这样Spring就会把Redis的key当作字符串处理了
+        redisTemplate.setKeySerializer(stringSerializer);
+        redisTemplate.setHashKeySerializer(stringSerializer);
+        redisTemplate.setHashValueSerializer(stringSerializer);
         redisTemplate.setConnectionFactory(initRedisConnectFactory());
         return redisTemplate ;
     }

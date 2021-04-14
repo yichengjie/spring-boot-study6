@@ -34,7 +34,7 @@ public class RedisConfig {
         return connectionFactory ;
     }
 
-    @Bean("redisTemplate")
+    /*@Bean("redisTemplate")
     public RedisTemplate<Object, Object> initRedisTemplate(){
         RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>() ;
         RedisSerializer<String> stringSerializer = redisTemplate.getStringSerializer();
@@ -44,5 +44,5 @@ public class RedisConfig {
         redisTemplate.setHashValueSerializer(stringSerializer);
         redisTemplate.setConnectionFactory(initRedisConnectFactory());
         return redisTemplate ;
-    }
+    }*/
 }

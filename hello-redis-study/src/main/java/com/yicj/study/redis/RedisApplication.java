@@ -39,6 +39,7 @@ public class RedisApplication implements ApplicationRunner {
     private void initRedisTemplate(){
         RedisSerializer<String> stringSerializer = redisTemplate.getStringSerializer();
         redisTemplate.setKeySerializer(stringSerializer);
+        redisTemplate.setValueSerializer(stringSerializer);
         redisTemplate.setHashKeySerializer(stringSerializer);
     }
 
@@ -68,5 +69,7 @@ public class RedisApplication implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         /*redisTemplate.opsForValue().set("key1","value1");
         redisTemplate.opsForHash().put("hash","field","hvalue");*/
+        // 发送消息
+        redisTemplate.convertAndSend("topic1", "hello world");
     }
 }

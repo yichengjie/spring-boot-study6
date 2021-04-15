@@ -15,6 +15,7 @@
         private void initRedisTemplate(){
             RedisSerializer<String> stringSerializer = redisTemplate.getStringSerializer();
             redisTemplate.setKeySerializer(stringSerializer);
+            redisTemplate.setValueSerializer(stringSerializer);
             redisTemplate.setHashKeySerializer(stringSerializer);
         }
         @Override
@@ -63,6 +64,7 @@
         private void initRedisTemplate(){
             RedisSerializer<String> stringSerializer = redisTemplate.getStringSerializer();
             redisTemplate.setKeySerializer(stringSerializer);
+            redisTemplate.setValueSerializer(stringSerializer);
             redisTemplate.setHashKeySerializer(stringSerializer);
         }
         @Bean // 创建任务池，运行线程等待处理Redis消息
@@ -90,4 +92,8 @@
 3. redis客户端输入命令
     ```cmd
     publish topic1 msg
+    ```
+4. redisTemplate发送消息
+    ```text
+    redisTemplate.convertAndSend("topic1", "hello world");
     ```

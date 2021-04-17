@@ -31,14 +31,4 @@ public class FormatController {
         dataMap.put("date", date) ;
         return dataMap ;
     }
-
-    @ResponseBody
-    @PostMapping("/format/commit3")
-    public Map<String,Object> format3(String date, String number){
-        Map<String, Object> dataMap = new HashMap<>() ;
-        dataMap.put("date", date) ;
-        dataMap.put("number", number) ;
-        return dataMap ;
-    }
-
 }

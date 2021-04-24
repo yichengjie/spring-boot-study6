@@ -1,9 +1,8 @@
-package com.yicj.study.netty.common;
+package com.yicj.study.netty.dispatcher;
 
 import com.alibaba.fastjson.JSON;
-import com.yicj.study.netty.handler.handler.MessageHandler;
+import com.yicj.study.netty.dispatcher.handler.MessageHandler;
 import com.yicj.study.netty.model.Invocation;
-import com.yicj.study.netty.model.Message;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

@@ -1,7 +1,7 @@
 package com.yicj.study.netty.model;
 
 import com.alibaba.fastjson.JSON;
-import com.yicj.study.netty.model.Message;
+import com.yicj.study.netty.dispatcher.Message;
 import lombok.Data;
 
 /**

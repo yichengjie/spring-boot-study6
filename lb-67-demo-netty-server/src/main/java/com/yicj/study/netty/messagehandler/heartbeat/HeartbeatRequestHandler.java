@@ -1,6 +1,6 @@
-package com.yicj.study.netty.dispatcher.handler.impl;
+package com.yicj.study.netty.messagehandler.heartbeat;
 
-import com.yicj.study.netty.dispatcher.handler.MessageHandler;
+import com.yicj.study.netty.messagehandler.MessageHandler;
 import com.yicj.study.netty.model.HeartbeatRequest;
 import com.yicj.study.netty.model.HeartbeatResponse;
 import com.yicj.study.netty.model.Invocation;

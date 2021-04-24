@@ -1,4 +1,4 @@
-package com.yicj.study.netty.dispatcher.handler;
+package com.yicj.study.netty.messagehandler;
 
 import com.yicj.study.netty.dispatcher.Message;
 import io.netty.channel.Channel;

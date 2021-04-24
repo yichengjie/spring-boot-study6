@@ -1,7 +1,7 @@
 package com.yicj.study.netty.dispatcher;
 
 import com.alibaba.fastjson.JSON;
-import com.yicj.study.netty.dispatcher.handler.MessageHandler;
+import com.yicj.study.netty.messagehandler.MessageHandler;
 import com.yicj.study.netty.model.Invocation;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
 
 // 消息分发
 @Component
-@ChannelHandler.Sharable
+@ChannelHandler.Sharable // 标记这个 ChannelHandler 可以被多个 Channel 使用
 public class MessageDispatcher extends SimpleChannelInboundHandler<Invocation> {
 
     @Autowired

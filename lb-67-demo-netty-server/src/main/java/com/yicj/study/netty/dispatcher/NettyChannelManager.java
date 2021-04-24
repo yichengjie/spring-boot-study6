@@ -1,4 +1,4 @@
-package com.yicj.study.netty.common;
+package com.yicj.study.netty.dispatcher;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelId;

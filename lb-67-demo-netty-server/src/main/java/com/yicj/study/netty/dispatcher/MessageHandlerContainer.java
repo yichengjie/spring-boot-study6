@@ -1,6 +1,6 @@
 package com.yicj.study.netty.dispatcher;
 
-import com.yicj.study.netty.dispatcher.handler.MessageHandler;
+import com.yicj.study.netty.messagehandler.MessageHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.framework.AopProxyUtils;
 import org.springframework.beans.factory.InitializingBean;

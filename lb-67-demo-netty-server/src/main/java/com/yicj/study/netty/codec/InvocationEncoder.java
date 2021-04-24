@@ -1,6 +1,7 @@
-package com.yicj.study.netty;
+package com.yicj.study.netty.codec;
 
 import com.alibaba.fastjson.JSON;
+import com.yicj.study.netty.model.Invocation;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;

@@ -1,5 +1,6 @@
-package com.yicj.study.netty;
+package com.yicj.study.netty.handler.handler;
 
+import com.yicj.study.netty.model.Message;
 import io.netty.channel.Channel;
 
 public interface MessageHandler<T extends Message> {

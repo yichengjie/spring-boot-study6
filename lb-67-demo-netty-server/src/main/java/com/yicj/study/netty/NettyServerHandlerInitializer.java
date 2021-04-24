@@ -1,13 +1,18 @@
 package com.yicj.study.netty;
 
+import com.yicj.study.netty.codec.InvocationDecoder;
+import com.yicj.study.netty.codec.InvocationEncoder;
+import com.yicj.study.netty.handler.NettyServerHandler;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
+@Component
 public class NettyServerHandlerInitializer extends ChannelInitializer<Channel> {
     /**
      * 心跳超时时间

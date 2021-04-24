@@ -1,14 +1,20 @@
 package com.yicj.study.netty;
 
 import com.alibaba.fastjson.JSON;
+import com.yicj.study.netty.handler.handler.MessageHandler;
+import com.yicj.study.netty.model.Invocation;
+import com.yicj.study.netty.model.Message;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+// 消息分发
+@Component
 @ChannelHandler.Sharable
 public class MessageDispatcher extends SimpleChannelInboundHandler<Invocation> {
 

@@ -1,5 +1,6 @@
-package com.yicj.study.netty;
+package com.yicj.study.netty.handler;
 
+import com.yicj.study.netty.NettyChannelManager;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

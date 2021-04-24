@@ -26,6 +26,7 @@
         <module>hello-world-web</module>
         <module>mvc-common-handler-starter</module>
         <module>hello-redis-study</module>
+        <module>lb-67-demo-netty-server</module>
     </modules>
 
     <parent>
@@ -69,6 +70,19 @@
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-cas</artifactId>
                 <version>1.7.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.70</version>
+            </dependency>
+
+            <!-- Netty 依赖 -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>4.1.50.Final</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

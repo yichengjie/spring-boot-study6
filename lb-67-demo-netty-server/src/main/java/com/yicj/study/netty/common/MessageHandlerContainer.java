@@ -1,4 +1,4 @@
-package com.yicj.study.netty;
+package com.yicj.study.netty.common;
 
 import com.yicj.study.netty.handler.handler.MessageHandler;
 import com.yicj.study.netty.model.Message;
@@ -34,7 +34,7 @@ public class MessageHandlerContainer implements InitializingBean {
         log.info("[afterPropertiesSet][消息处理器数量:{}]", handlers.size());
     }
 
-    MessageHandler getMessageHandler(String type){
+    public MessageHandler getMessageHandler(String type){
         MessageHandler handler = handlers.get(type);
         if (handler == null){
             String format = String.format("类型(%s)找不到匹配的MessageHandler处理器", type);
@@ -44,7 +44,7 @@ public class MessageHandlerContainer implements InitializingBean {
     }
 
     //获取MessageHandler处理的消息类
-    static Class<? extends Message> getMessageClass(MessageHandler handler){
+    public static Class<? extends Message> getMessageClass(MessageHandler handler){
         // 获取Bean对应的Class类名，因为有可能被Aop代理过
         Class<?> targetClass = AopProxyUtils.ultimateTargetClass(handler);
         // 获取接口的Type数组

@@ -1,4 +1,4 @@
-package com.yicj.study.netty;
+package com.yicj.study.netty.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;

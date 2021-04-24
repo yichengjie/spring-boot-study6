@@ -1,4 +1,4 @@
-package com.yicj.study.netty;
+package com.yicj.study.netty.common;
 
 import com.alibaba.fastjson.JSON;
 import com.yicj.study.netty.handler.handler.MessageHandler;

@@ -1,7 +1,8 @@
-package com.yicj.study.netty;
+package com.yicj.study.netty.server;
 
 import com.yicj.study.netty.codec.InvocationDecoder;
 import com.yicj.study.netty.codec.InvocationEncoder;
+import com.yicj.study.netty.common.MessageDispatcher;
 import com.yicj.study.netty.handler.NettyServerHandler;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;

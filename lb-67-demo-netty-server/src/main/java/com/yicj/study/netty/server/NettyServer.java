@@ -7,19 +7,19 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.net.InetSocketAddress;
 
+@Slf4j
 @Component
 public class NettyServer {
-    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Value("${netty.port}")
     private Integer port;
@@ -59,7 +59,7 @@ public class NettyServer {
         ChannelFuture future = bootstrap.bind().sync();
         if (future.isSuccess()) {
             channel = future.channel();
-            logger.info("[start][Netty Server 启动在 {} 端口]", port);
+            log.info("[start][Netty Server 启动在 {} 端口]", port);
         }
     }
 

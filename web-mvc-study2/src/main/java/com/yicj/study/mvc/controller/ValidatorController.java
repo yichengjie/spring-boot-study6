@@ -2,17 +2,16 @@ package com.yicj.study.mvc.controller;
 
 import com.yicj.study.mvc.model.User;
 import com.yicj.study.mvc.validation.UserValidator;
-import org.springframework.beans.factory.config.CustomEditorConfigurer;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ResponseBody;
-import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -31,7 +30,7 @@ public class ValidatorController {
 
     @ResponseBody
     @GetMapping("/validator/stringToUserConverter")
-    public Map<String,Object> stringToUserConverter(@Valid User user, Errors errors, Date date){
+    public Map<String,Object> stringToUserConverter(@Validated User user, Errors errors, Date date){
         Map<String,Object> map = new HashMap<>() ;
         map.put("user", user) ;
         map.put("date", date) ;

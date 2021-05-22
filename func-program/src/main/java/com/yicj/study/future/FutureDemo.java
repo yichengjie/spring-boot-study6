@@ -23,8 +23,10 @@ public class FutureDemo {
         // result = future.get() ;
         // 轮询方式虽然不会导致当前线程阻塞，但会导致搞额cpu负载
         long start = System.currentTimeMillis() ;
-        while (!future.isDone()){
-
+        while (true) {
+            if (future.isDone()) {
+                break;
+            }
         }
         log.info("轮询耗时：{}",System.currentTimeMillis() - start);
         result = future.get() ;

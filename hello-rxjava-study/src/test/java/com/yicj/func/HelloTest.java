@@ -1,6 +1,10 @@
+package com.yicj.func;
+
 import io.reactivex.Observable;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+
+import java.util.concurrent.CompletableFuture;
 
 
 @Slf4j
@@ -50,7 +54,8 @@ public class HelloTest {
     @Test
     public void cache(){
         Observable<Object> observable = Observable.create(observer -> {
-            observer.onNext("处理的数字是: " + Math.random() * 100);
+            observer.onNext("处理的数字是1: " + Math.random() * 100);
+            observer.onNext("处理的数字是2: " + Math.random() * 100);
             observer.onComplete();
         }).cache();
 
@@ -60,6 +65,28 @@ public class HelloTest {
 
         observable.subscribe(consumer ->{
             log.info("我处理的元素是:{}", consumer);
+        }) ;
+    }
+
+
+    public void test2(){
+
+        CompletableFuture<Double> cf = CompletableFuture.supplyAsync(()->{
+            System.out.println(Thread.currentThread()+"job1 start,time->"+System.currentTimeMillis());
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+            }
+            if(true){
+                throw new RuntimeException("test");
+            }else{
+                System.out.println(Thread.currentThread()+"job1 exit,time->"+System.currentTimeMillis());
+                return 1.2;
+            }
+        });
+
+        CompletableFuture<Double> cf2=cf.whenComplete((a,b)->{
+
         }) ;
     }
 

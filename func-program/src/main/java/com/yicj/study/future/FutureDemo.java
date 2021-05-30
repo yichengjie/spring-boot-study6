@@ -1,5 +1,6 @@
 package com.yicj.study.future;
 
+import com.yicj.study.Constant;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ExecutorService;
@@ -8,6 +9,8 @@ import java.util.concurrent.Future;
 
 @Slf4j
 public class FutureDemo {
+
+    private String name = Constant.version ;
 
     public static void main(String[] args)  throws Exception{
         ExecutorService pool = Executors.newCachedThreadPool();
@@ -41,6 +44,19 @@ public class FutureDemo {
             e.printStackTrace();
         }
         log.info("我的重要的事情干完了，我要获取异步计算结果来执行剩下的事情.");
+    }
+
+    public int inc(){
+        int x ;
+        try {
+            x = 2 ;
+            return x;
+        }catch (Exception e){
+            x = 5 ;
+            return x ;
+        }finally {
+            x = 8 ;
+        }
     }
 
 }

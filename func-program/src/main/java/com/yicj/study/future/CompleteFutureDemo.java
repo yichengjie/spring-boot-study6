@@ -6,6 +6,10 @@ import java.util.concurrent.Executors;
 
 public class CompleteFutureDemo {
 
+    public CompleteFutureDemo(String name){
+        System.out.println("hello world" + name);
+    }
+
     public static void main(String[] args) throws Exception {
 
         CompletableFuture<String> completableFutureOne = new CompletableFuture<>();

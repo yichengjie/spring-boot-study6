@@ -21,15 +21,13 @@ public class HelloWorld {
 
     public void sendMessage(){
         String openid ="obC9S6seDG_rYlg90eAk7Qofw5-A" ;
-        String template_id = "HKvainS_QdHhR42BgpwTLwlRY4fNJusVarGWsg2k6YI" ;
+        String template_id = "-WJW3kxXbM3QIt67DXH2Cc89Axow0ae2K8TXDfd7FDA" ;
         String msgUrl = "http://www.baiduxfzx.com/gyj/?bd_vid=9784367128317145609" ;
-        String first = "2021/06/07" ;
+        String first = "https://www.baidu.com/img/pc_629ee8886a9c20e7f3cb1d2889c3e45d.gif" ;
         String keyword1 = "测试" ;
         String keyword2 = "测试数据" ;
-        String accessToken = "45_RBYK_ATviXZeDuPv8OLj_uo73JVpkyvOUY-mefWsxfnzcnzyrvYzZDcLVmO5g4sBN0IiY28-bqjCa_jy5yypPAi_muVmgpzfz70DoLDbHJa9vgU8aIsqLCSRKFTGAl2CJqUaJDOidJA0IweqWJMcAEAZMP" ;
+        String accessToken = "45_7BW3pP1OqRVufmJJgsm8ktmB5ARerH4cFOGo-NRwWZu3Tb2uBO7toVdTsAhC8MWvtzoVzRhq2J_XMs1Z4EM0D-j_UXCVBgIx0gdZiLjk94uJ0-JnewXoMQvMbEjhENLHGTBOFe8UlnMADi9FAIBdACAOWP" ;
         //{{first.DATA}} {{keyword1.DATA}} 报名链接{{keyword2.DATA}}
-
-
         Map<String, SlotItemVo> slots = new HashMap<>() ;
         slots.put("first", SlotItemVo.builder().value(first).color("#44bd32").build()) ;
         slots.put("keyword1", SlotItemVo.builder().value(keyword1).color("#273c75").build()) ;

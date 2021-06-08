@@ -9,9 +9,12 @@ import me.chanjar.weixin.mp.bean.WxMpTemplateData;
 import me.chanjar.weixin.mp.bean.WxMpTemplateMessage;
 
 public class HelloWorld {
-
-    private static String appId = "wxca158834f336dba1" ;
-    private static String appSecret ="dbcbeb51c51ba389e8e08bfef347a060" ;
+    /**
+     *  client-id: 100550231
+     *  client-secret: 69b6ab57b22f3c2fe6a6149274e3295e
+     */
+    private static String appId = "100550231" ;
+    private static String appSecret ="69b6ab57b22f3c2fe6a6149274e3295e" ;
 
     public static void main(String[] args) throws WxErrorException {
         WxMpInMemoryConfigStorage config = new WxMpInMemoryConfigStorage();

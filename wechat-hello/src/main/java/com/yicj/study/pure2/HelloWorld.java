@@ -13,9 +13,9 @@ public class HelloWorld {
     private static String appSecret ="dbcbeb51c51ba389e8e08bfef347a060" ;
     //45_RBYK_ATviXZeDuPv8OLj_uo73JVpkyvOUY-mefWsxfnzcnzyrvYzZDcLVmO5g4sBN0IiY28-bqjCa_jy5yypPAi_muVmgpzfz70DoLDbHJa9vgU8aIsqLCSRKFTGAl2CJqUaJDOidJA0IweqWJMcAEAZMP
     public static void main(String[] args) {
-        new HelloWorld().sendMessage();
-        //String accessToken = new HelloWorld().getAccessToken();
-        //System.out.println(accessToken);
+        //new HelloWorld().sendMessage();
+        String accessToken = new HelloWorld().getAccessToken();
+        System.out.println(accessToken);
     }
 
 

@@ -3,6 +3,7 @@ package com.yicj.study.model;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,6 +30,7 @@ import java.util.Map;
 @Data
 @Builder
 public class SendTemplateMessageVo {
+    //private List<String> touser ;
     private String touser ;
     private String template_id ;
     private String url ;

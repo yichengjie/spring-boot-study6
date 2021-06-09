@@ -1,10 +1,9 @@
-package com.yicj.study.pure2;
+package com.yicj.study.original;
 
 import com.alibaba.fastjson.JSON;
 import com.yicj.study.model.SendTemplateMessageVo;
 import com.yicj.study.model.SlotItemVo;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 

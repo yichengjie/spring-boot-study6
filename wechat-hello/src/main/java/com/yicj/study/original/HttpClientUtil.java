@@ -1,4 +1,4 @@
-package com.yicj.study.pure2;
+package com.yicj.study.original;
 
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;

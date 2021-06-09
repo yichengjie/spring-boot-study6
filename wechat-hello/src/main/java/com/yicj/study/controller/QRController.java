@@ -9,35 +9,31 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author yicj1
- * @title: WechatController
+ * @title: QRController
  * @description: TODO
  * @email yicj1@lenovo.com
- * @date 2021/6/8 16:47
+ * @date 2021/6/9 14:26
  */
 @RestController
-public class WechatController {
-    //private static String appId = "wxca158834f336dba1" ;
-    //private static String appSecret ="dbcbeb51c51ba389e8e08bfef347a060" ;
-
+public class QRController {
+    //品质365
     private static String appId = "wxd99431bbff8305a0" ;
     private static String appSecret ="60f78681d063590a469f1b297feff3c4" ;
 
     @Autowired
     private RestTemplate restTemplate ;
 
-    @GetMapping("/oauth2/authorization/wechat")
+    @GetMapping("/oauth2/authorization/qr")
     public void redirectLogin(HttpServletResponse response) throws IOException {
         String redirectUrl = "https://open.weixin.qq.com/connect/qrconnect?response_type=code&client_id=wxd99431bbff8305a0&scope=snsapi_login&state=PuqZ2Nz5t8FEV52UBBnFckjKKamUYgh4Z_FEK0eMQ-o%3D&redirect_uri=http://www.pinzhi365.com/qqLogin/weixin&appid=wxd99431bbff8305a0" ;
         response.sendRedirect(redirectUrl);
     }
 
-
-    @GetMapping("/qqLogin/weixin")
+    // 直接跳转到品质365上
+    //@GetMapping("/qqLogin/weixin")
     public String fetchToken(String code){
         String tokenUri = "https://api.weixin.qq.com/sns/oauth2/access_token" ;
         String redirect_uri = "http://www.pinzhi365.com/qqLogin/weixin" ;
@@ -55,8 +51,5 @@ public class WechatController {
         // 登录成功以后跳转到对应页面
         return tmpTokenResponse ;
     }
-
-
-
 
 }

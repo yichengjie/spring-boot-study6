@@ -113,15 +113,14 @@ public class WechatController {
                 .template_id(template_id)
                 .url(msgUrl)
                 .data(slots).build();
-        System.out.println(JSON.toJSON(templateMessageVo).toString());
-
         Map<String, String> param = new HashMap<>() ;
         param.put("ACCESS_TOKEN", accessToken) ;
-
-        HttpHeaders headers = new HttpHeaders();
-        MediaType type = MediaType.parseMediaType("application/x-www-form-urlencoded; charset=UTF-8");
-        headers.setContentType(type);
-        HttpEntity<String> requestEntity = new HttpEntity<>(JSON.toJSON(templateMessageVo).toString(),headers);
-        return restTemplate.postForObject(url, requestEntity, String.class, param);
+        //1. 中文乱码设置requestHeader的Content-Type为UTF-8
+        //HttpHeaders headers = new HttpHeaders();
+        //MediaType type = MediaType.parseMediaType("application/x-www-form-urlencoded; charset=UTF-8");
+        //headers.setContentType(type);
+        //HttpEntity<String> requestEntity = new HttpEntity<>(JSON.toJSON(templateMessageVo).toString(),headers);
+        //2. 设置RestTemplate中的StringHttpMessageConverter的默认编码为UTF-8即可
+        return restTemplate.postForObject(url, templateMessageVo, String.class, param);
     }
 }

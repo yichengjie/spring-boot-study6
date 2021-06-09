@@ -3,8 +3,12 @@ package com.yicj.study;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.util.List;
 
 /**
  * @author yicj1
@@ -22,6 +26,11 @@ public class HelloApp {
 
     @Bean
     public RestTemplate restTemplate(){
-        return new RestTemplate() ;
+        RestTemplate restTemplate = new RestTemplate();
+        // 将StringHttpMessageConverter编码设置为UTF-8，以解决后台收到中文乱码参数
+        StringHttpMessageConverter stringHttpMessageConverter =
+                new StringHttpMessageConverter(Charset.defaultCharset());
+        restTemplate.getMessageConverters().set(1, stringHttpMessageConverter);
+        return restTemplate ;
     }
 }

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.yicj.study.model.SendTemplateMessageVo;
 import com.yicj.study.model.SlotItemVo;
 import com.yicj.study.model.result.AccessToken;
+import com.yicj.study.model.result.TemplateInfoList;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -122,5 +124,24 @@ public class WechatController {
         //HttpEntity<String> requestEntity = new HttpEntity<>(JSON.toJSON(templateMessageVo).toString(),headers);
         //2. 设置RestTemplate中的StringHttpMessageConverter的默认编码为UTF-8即可
         return restTemplate.postForObject(url, templateMessageVo, String.class, param);
+    }
+
+    // 获取模板id（目前报错提示）
+    @PostMapping("/fetchTemplateId")
+    public String fetchTemplateId(String accessToken){
+        String templateUrl = "https://api.weixin.qq.com/cgi-bin/template/api_add_template?access_token={ACCESS_TOKEN}" ;
+        Map<String, String> param = new HashMap<>() ;
+        param.put("ACCESS_TOKEN", accessToken) ;
+        return restTemplate.postForObject(templateUrl, "{\"template_id_short\":\"TM00015\"}",String.class, param) ;
+    }
+
+    // 获取模板列表
+    //GET https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token=ACCESS_TOKEN
+    @GetMapping("/fetchTemplateList")
+    public TemplateInfoList fetchTemplateList(String accessToken){
+        String templateUrl = "https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token={ACCESS_TOKEN}" ;
+        Map<String, String> param = new HashMap<>() ;
+        param.put("ACCESS_TOKEN", accessToken) ;
+        return restTemplate.getForObject(templateUrl, TemplateInfoList.class, param) ;
     }
 }

@@ -38,8 +38,17 @@ public class WechatController {
     private String appId ;
     @Value("${wechat.app-secret}")
     private String appSecret ;
+    @Value("${wechat.redirect-uri}")
+    private String redirectUri ;
+
     @Autowired
     private RestTemplate restTemplate ;
+
+    @GetMapping("/wechat/check")
+    public String check(String signature, String timestamp, String nonce, String echostr){
+        // 校验echostr合法性
+        return echostr ;
+    }
 
     // 获取AccessToken接口
     @GetMapping("/fetchAccessToken")
@@ -55,7 +64,6 @@ public class WechatController {
         return accessToken ;
     }
 
-
     /**
      * 重定向到网页授权地址
      * @param response
@@ -63,8 +71,7 @@ public class WechatController {
      */
     @GetMapping("/oauth2/authorization/wechat")
     public void redirectLogin(HttpServletResponse response) throws IOException {
-        String callbackUrl = "https://www.yicj1.com/wechatLogin" ;
-        String encodeCallbackUrl = URLEncoder.encode(callbackUrl, "UTF-8") ;
+        String encodeCallbackUrl = URLEncoder.encode(redirectUri, "UTF-8") ;
         String url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&redirect_uri=%s&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect" ;
         response.sendRedirect(String.format(url, appId, encodeCallbackUrl));
     }
@@ -77,12 +84,11 @@ public class WechatController {
     @GetMapping("/wechatLogin")
     public String wechatLogin(String code){
         String tokenUri = "https://api.weixin.qq.com/sns/oauth2/access_token" ;
-        String redirect_uri = "https://www.yicj1.com/wechatLogin" ;
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>() ;
         params.set("appid", appId);
         params.set("secret", appSecret);
         params.set("code", code);
-        params.set("redirect_uri", redirect_uri);
+        params.set("redirect_uri", redirectUri);
         params.set("grant_type", "authorization_code");
         String tmpTokenResponse = this.restTemplate.postForObject(
                 tokenUri, params, String.class) ;

@@ -1,6 +1,5 @@
 package com.yicj.study.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.yicj.study.model.SendTemplateMessageVo;
 import com.yicj.study.model.SlotItemVo;
 import com.yicj.study.model.result.AccessToken;
@@ -8,9 +7,6 @@ import com.yicj.study.model.result.TemplateInfoList;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +24,7 @@ import java.util.Map;
  * @author yicj1
  * @title: WechatController
  * @description: TODO
- * @email yicj1@lenovo.com
+ * @email 626659321@qq.com
  * @date 2021/6/9 16:43
  */
 @Data

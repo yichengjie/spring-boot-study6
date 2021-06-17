@@ -14,7 +14,7 @@ import java.io.IOException;
  * @author yicj1
  * @title: QRController
  * @description: TODO
- * @email yicj1@lenovo.com
+ * @email 626659321@qq.com
  * @date 2021/6/9 14:26
  */
 @RestController

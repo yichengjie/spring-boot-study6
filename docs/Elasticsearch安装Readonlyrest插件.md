@@ -24,6 +24,6 @@
     ```
 6. 查看es运行状态
     ```text
-    curl http://10.122.83.137:9200/_cat/health?v
-    curl --basic -u admin:dlxtstadmin  http://10.122.83.128:9200/_cat/health?v
+    curl http://192.168.1.1:9200/_cat/health?v
+    curl --basic -u admin:adminpwd  http://192.168.1.1:9200/_cat/health?v
     ```

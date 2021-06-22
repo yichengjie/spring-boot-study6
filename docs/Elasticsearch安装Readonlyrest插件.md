@@ -12,7 +12,7 @@
     ```
 3. 执行命令安装linux插件
     ```text
-    ./elasticsearch-plugin file://~/liferay/tools/readonlyrest-1.30.1_es7.6.2.zip
+    ./elasticsearch-plugin install file:///home/appadmin/liferay/readonlyrest-1.30.1_es7.6.2.zip
     ```
 4. 卸载插件
     ```text
@@ -29,12 +29,6 @@
      enable: true
      response_if_req_forbidden: Sorry, your request is forbidden.
      access_control_rules:
-     - name: "Accept all request from cluster"
-       type: allow
-       hosts: 
-           - 192.168.1.1
-           - 192.168.1.2
-           - 192.168.1.3
      - name: "Accept all request for logstash and kibana grafana"
        type: allow
        auth_key: admin:123456
@@ -44,7 +38,12 @@
      - name: "Accept read only user"
        auth_key: reader:readerpwd
        actions: ["indices:data/read/*"]
-   ```  
+   ```
+7. 禁用xpack安全设置，elasticsearch.yml文件末尾添加配置 （否则启动会报错）
+   ```text
+   # config xpack
+   xpack.security.enabled: false
+   ```
 7. 查看es运行状态
     ```text
     curl --basic -u admin:123456  http://localhost:9200/_cat/health?v

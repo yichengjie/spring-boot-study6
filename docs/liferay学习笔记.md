@@ -1,0 +1,17 @@
+1. liferay源码导入
+    ```text
+    https://my.oschina.net/qiangle/blog/3035686
+    ```
+2. 博客资源
+   ```text
+   https://www.cnblogs.com/hibou/tag/liferay%207/
+   https://www.javasavvy.com/liferay-7-hooks-tutorials/
+   ```
+3. 导入源码
+   ```text
+   https://my.oschina.net/qiangle/blog/3035686
+   ```
+4. 博客
+   ```text
+   https://blog.csdn.net/wlchina123/article/details/113699837
+   ```

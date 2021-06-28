@@ -139,22 +139,14 @@
     ```text
     锁住物理内存，不使用swap内存，有swap内存的可以开启此项
     ```
-7. discovery.zen.ping_timeout: 3000s
-    ```text
-    自动发现拼其他节点超时时间
-    ```
-8. discovery.zen.ping.unicast.hosts: ["192.168.100.1:9300","192.168.100.2:9300","192.168.100.3:9300"]
+7. discovery.seed_hosts: ["192.168.1.1:9300", "192.168.1.2:9300", "192.168.1.3:9300"]
     ```text
     设置集群的初始节点列表，集群互通端口为9300
     ```
-9. cluster.initial_master_nodes: es1 （集群环境填写每个节点的名称即可）
-   ```text
-   集群环境不配置会报错:master_not_discovered_exception", "reason
-   ```
 ### ES运行及验证
 1. 启动es
     ```text
-    nohup ./elasticsearch> nohup.out 2>&1 &
+    ./elasticsearch -d
     ```
 2. 查看启动
     ```text

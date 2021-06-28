@@ -57,26 +57,52 @@
     ```
 ### 配置elasticsearch.yml文件
 1. 模板yml文件
-    ```text
-    cluster.name: escluster
-    node.name: es1
-    node.master: true
-    node.data: true
-    path.data: /data/elasticsearch/data
-    path.logs: /data/elasticsearch/logs
-    bootstrap.memory_lock: true
-    bootstrap.system_call_filter: false
-    http.port: 9200
-    network.host: 0.0.0.0
-    discovery.zen.minimum_master_nodes: 2
-    discovery.zen.ping_timeout: 3s
-    discovery.zen.ping.unicast.hosts: ["192.168.100.1:9300","192.168.100.2:9300","192.168.100.3:9300"]
-    ```
+   ```text
+   # 设置集群名称，集群内所有节点的名称必须一致。
+   cluster.name: cluster-prod
+   # 设置节点名称，集群内节点名称必须唯一。
+   node.name: node-prod-1
+   # 表示该节点会不会作为主节点，true表示会；false表示不会
+   node.master: true
+   # 当前节点是否用于存储数据，是：true、否：false
+   node.data: true
+   # 索引数据存放的位置
+   path.data: /data/elasticsearch/data
+   # 日志文件存放的位置
+   path.logs: /data/elasticsearch/logs
+   # 需求锁住物理内存，是：true、否：false
+   bootstrap.memory_lock: true
+   # 监听地址，用于访问该es
+   network.host: 192.168.1.1
+   # es对外提供的http端口，默认 9200
+   http.port: 9200
+   # TCP的默认监听端口，默认 9300
+   transport.tcp.port: 9300
+   # 设置这个参数来保证集群中的节点可以知道其它N个有master资格的节点。默认为1，对于大的集群来说，可以设置大一点的值（2-4）
+   discovery.zen.minimum_master_nodes: 2
+   # es7.x 之后新增的配置，写入候选主节点的设备地址，在开启服务后可以被选为主节点
+   discovery.seed_hosts: ["192.168.1.1:9300", "192.168.1.2:9300", "192.168.1.3:9300"]
+   discovery.zen.fd.ping_timeout: 1m
+   discovery.zen.fd.ping_retries: 5
+   # es7.x 之后新增的配置，初始化一个新的集群时需要此配置来选举master
+   cluster.initial_master_nodes: ["node-prod-1", "node-prod-2", "node-prod-3"]
+   # 是否支持跨域，是：true，在使用head插件时需要此配置
+   http.cors.enabled: true
+   # “*” 表示支持所有域名
+   http.cors.allow-origin: "*"
+   action.destructive_requires_name: true
+   action.auto_create_index: .security,.monitoring*,.watches,.triggered_watches,.watcher-history*
+   xpack.security.enabled: false
+   xpack.monitoring.enabled: true
+   xpack.graph.enabled: false
+   xpack.watcher.enabled: false
+   xpack.ml.enabled: false
+   ```
 2. 三台机器不一样的地方
     ```text
-    node.name: es1      ===》192.168.100.1
-    node.name: es2      ===》192.168.100.2
-    node.name: es3      ===》192.168.100.3
+    node.name: node-prod-1      ===》192.168.100.1
+    node.name: node-prod-2      ===》192.168.100.2
+    node.name: node-prod-3      ===》192.168.100.3
     ```
 ### elasticsearch.yml模板参数解释
 1. cluster.name
@@ -121,6 +147,10 @@
     ```text
     设置集群的初始节点列表，集群互通端口为9300
     ```
+9. cluster.initial_master_nodes: es1 （集群环境填写每个节点的名称即可）
+   ```text
+   集群环境不配置会报错:master_not_discovered_exception", "reason
+   ```
 ### ES运行及验证
 1. 启动es
     ```text
@@ -131,3 +161,26 @@
     netstat -tlnp | egrep '9200|9300'
     service elasticsearch status
     ```
+3. 查看节点健康状态
+   ```text
+   curl http://localhost:9200/_cat/health?v
+   curl http://localhost:9200/_cluster/health?pretty=true
+   curl http://localhost:9200/_cluster/state
+   curl -XGET 'http://localhost:9200/_cat/shards?v'
+   ```
+4. 查看unsigned 的原因
+   ```text
+   _cluster/allocation/explain
+   ```
+5. 查看集群中不同节点、不同索引的状态
+   ```text
+   _cat/shards?h=index,shard,prirep,state,unassigned.reason
+   ```
+6. 关闭防火墙
+   ```text
+   systemctl stop firewalld.service
+   ```
+7. 查看防火墙状态
+   ```text
+   systemctl status  firewalld
+   ```

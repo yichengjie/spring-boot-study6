@@ -159,6 +159,7 @@
    curl http://localhost:9200/_cluster/health?pretty=true
    curl http://localhost:9200/_cluster/state
    curl -XGET 'http://localhost:9200/_cat/shards?v'
+   curl http://localhost:9200/_cat/indices
    ```
 4. 查看unsigned 的原因
    ```text
@@ -175,4 +176,10 @@
 7. 查看防火墙状态
    ```text
    systemctl status  firewalld
+   ```
+8. liferay插件
+   ```text
+   https://github.com/elastic/elasticsearch/tree/master/plugins
+   analysis-smartcn
+   analysis-stempel
    ```

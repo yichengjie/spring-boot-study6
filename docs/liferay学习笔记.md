@@ -15,3 +15,7 @@
    ```text
    https://blog.csdn.net/wlchina123/article/details/113699837
    ```
+5. liferay集群搭建
+   ```text
+   https://www.pianshen.com/article/3995914197/
+   ```

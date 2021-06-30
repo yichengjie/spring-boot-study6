@@ -177,9 +177,3 @@
    ```text
    systemctl status  firewalld
    ```
-8. liferay插件
-   ```text
-   https://github.com/elastic/elasticsearch/tree/master/plugins
-   analysis-smartcn
-   analysis-stempel
-   ```

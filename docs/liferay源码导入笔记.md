@@ -21,7 +21,7 @@
     ```
 4. eclipse导入Existing Projects into Workspace
 5. ant添加环境参数ANT_OPTS为-Xmx2560m
-6. 将gradle-5.6.4.LIFERAY-PATCHED-2-bin.zip复制到C:\Users\yicj1\.liferay\mirrors\github.com\liferay目录中
+6. 将gradle-5.6.4.LIFERAY-PATCHED-2-bin.zip复制到```C:\Users\yicj1\.liferay\mirrors\github.com\liferay```目录中
     ```text
     liferay-ce-portal-src-7.3.5-ga6-20200930172312275.zip解压后tools中存在gradle-5.6.4.LIFERAY-PATCHED-2-bin.zip
     ```

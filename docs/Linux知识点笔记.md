@@ -7,3 +7,7 @@
    ```text
    netstat -tunlp|grep 5601
    ```
+3. 查看linux内存使用情况
+   ```text
+   cat /proc/meminfo
+   ```

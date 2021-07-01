@@ -1,8 +1,8 @@
 #### 修改server.xml文件
 1. 修改```<Server port="8005" shutdown="SHUTDOWN">```中端口 （同一台机器上端口不同即可）
 2. 修改```<Connector port="8080" protocol="HTTP/1.1" redirectPort="8443" />```中端口（同一台机器上端口不同即可）
-3. 修改```<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />```中端口（同一台机器上端口不同即可）
-4. 修改```<Engine name="Catalina" defaultHost="localhost" jvmRoute="tomcat1">``` 中jvmRoute的值，集群中名称都不同
+3. 修改```<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" address="192.168.73.72" />```中端口（同一台机器上端口不同即可）
+4. 修改```<Engine name="Catalina" defaultHost="localhost" jvmRoute="node1">``` 中jvmRoute的值，集群中名称不同
 5. Engine下添加Cluster
     ```xml
     <!--1.修改Cluster-Channel-Receiver中address为本机IP地址 -->
@@ -14,7 +14,7 @@
               <Membership className="org.apache.catalina.tribes.membership.McastService"
                             address="228.0.0.4" port="45564" frequency="500" dropTime="3000"/>
               <Receiver className="org.apache.catalina.tribes.transport.nio.NioReceiver"
-                          address="10.112.73.72" port="5000" selectorTimeout="100" maxThreads="6"/>
+                          address="192.168.73.72" port="5000" selectorTimeout="100" maxThreads="6"/>
               <Sender className="org.apache.catalina.tribes.transport.ReplicationTransmitter">
                    <Transport className="org.apache.catalina.tribes.transport.nio.PooledParallelSender"/>
               </Sender>

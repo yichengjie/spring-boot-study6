@@ -1,8 +1,8 @@
 #### 修改server.xml文件
-1. 修改<Server port="8005" shutdown="SHUTDOWN">中端口 （同一台机器上端口不同即可）
-2. 修改<Connector port="8080" protocol="HTTP/1.1" redirectPort="8443" />中端口（同一台机器上端口不同即可）
-3. 修改<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />中端口（同一台机器上端口不同即可）
-4. 修改<Engine name="Catalina" defaultHost="localhost" jvmRoute="tomcat1"> 中jvmRoute的值，集群中名称都不同
+1. 修改```<Server port="8005" shutdown="SHUTDOWN">```中端口 （同一台机器上端口不同即可）
+2. 修改```<Connector port="8080" protocol="HTTP/1.1" redirectPort="8443" />```中端口（同一台机器上端口不同即可）
+3. 修改```<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />```中端口（同一台机器上端口不同即可）
+4. 修改```<Engine name="Catalina" defaultHost="localhost" jvmRoute="tomcat1">``` 中jvmRoute的值，集群中名称都不同
 5. Engine下添加Cluster
     ```xml
     <!--1.修改Cluster-Channel-Receiver中address为本机IP地址 -->
@@ -29,7 +29,8 @@
           <ClusterListener className="org.apache.catalina.ha.session.ClusterSessionListener"/>
     </Cluster>
     ```
-6. 在自己的web应用的web.xml中添加<distributable/> 标签
+#### 修改自己应用配置
+1. 在web应用的web.xml中添加<distributable/> 标签
     ```xml
     <web-app>
       <distributable/>
@@ -39,7 +40,7 @@
       </description>
     </web-app>
     ```
-7. 编写jsp页面验证session
+2. 编写jsp页面验证session
     ```text
     <%@ page language="java" contentType="text/html; charset=UTF-8"
         pageEncoding="UTF-8"%>

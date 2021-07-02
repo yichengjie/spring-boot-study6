@@ -16,14 +16,10 @@
     ```
 5. 进入```src```目录执行make install命令
     ```text
-    make install
+    make PREFIX=/usr/local/redis-6.2.4 install
     ```
 6. 在redis根目录下创建conf和bin目录
 7. 将redis根目录下```redis.conf```移动到conf中
-8. 将redis根目录/src下```mkreleasehdr.sh、redis-benchmark、redis-check-aof、redis-cli、redis-server```移动到bin中
-    ```text
-    mv mkreleasehdr.sh redis-benchmark redis-check-aof redis-cli redis-server ../bin
-    ```
 9. 编辑redis.conf
    ```text
    8.1 将daemonize属性改为yes

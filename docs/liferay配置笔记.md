@@ -17,3 +17,15 @@
    //portal-ext.properties 中添加配置
    terms.of.use.required=false
    ```
+#### liferay站点配置默认404页面
+1. 使用管理员账号登录liferay后台，在对应站点下创建404页面
+   ```text
+   5.1 登录liferay后台，在对应站点的公开页面下建立404页面（类型：嵌入式）
+   5.2 配置友好url为/nofindpage
+   5.3 URL配置为真实的404地址即可
+   ```
+2. 在portal-ext.properties中添加配置（注意这里的nofindpage与前面的友好url对应）
+   ```text
+   layout.friendly.url.page.not.found=/web/hello/nofindpage
+   sites.friendly.url.page.not.found=/web/hello/nofindpage
+   ```

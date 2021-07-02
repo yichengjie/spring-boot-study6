@@ -15,7 +15,7 @@
                             address="228.0.0.4" port="45564" frequency="500" dropTime="3000"/>
               <Receiver className="org.apache.catalina.tribes.transport.nio.NioReceiver"
                           address="192.168.73.72" port="5000" selectorTimeout="100" maxThreads="6"/>
-              <Sender className="org.apache.catalina.tribes.transport.ReplicationTransmitter">
+              <Sender className="org.apa`c`he.catalina.tribes.transport.ReplicationTransmitter">
                    <Transport className="org.apache.catalina.tribes.transport.nio.PooledParallelSender"/>
               </Sender>
               <Interceptor className="org.apache.catalina.tribes.group.interceptors.TcpFailureDetector"/>
@@ -50,7 +50,16 @@
     <head><title>Cluster app test</title></head>
     <body>
         Server info:
-        <%out.print("<br>ID " + session.getId() + " <br>");%>
+        <%
+           out.print(request.getLocalAddr() + ":" + request.getLocalPort() + "<br>");
+           out.print("<br>ID " + session.getId() + " <br>");
+        %>
     </body>
     </html>
     ```
+#### 注意问题
+1. 浏览器访问时一定要保证地址栏端口之前的部分相同，否则sessionId会不同
+   ```text
+   1.1 访问http://localhost:9091/test.jsp与http://localhost:9092/test.jsp得到session一样
+   1.2 访问http://localhost:9091/test.jsp与http://127.0.0.1:9092/test.jsp得到session不一样
+   ```

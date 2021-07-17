@@ -28,6 +28,7 @@
         <module>lb-67-demo-netty-server</module>
         <module>hello-rxjava-study</module>
         <module>wechat-hello</module>
+        <module>spring-boot-actuator</module>
     </modules>
 
     <parent>

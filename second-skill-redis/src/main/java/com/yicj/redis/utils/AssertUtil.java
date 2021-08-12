@@ -1,8 +1,8 @@
 package com.yicj.redis.utils;
 
 import cn.hutool.core.util.StrUtil;
-import com.imooc.commons.constant.ApiConstant;
-import com.imooc.commons.exception.ParameterException;
+import com.yicj.redis.constant.ApiConstant;
+import com.yicj.redis.exception.ParameterException;
 
 /**
  * 断言工具类

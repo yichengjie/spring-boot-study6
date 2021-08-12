@@ -1,0 +1,11 @@
+readonlyrest:
+  enable: true
+  response_if_req_forbidden: Sorry, your request is forbidden.
+  access_control_rules:
+  - name: Full access with HTTP auth
+    auth_key: admin:123456
+    type: allow
+  - name: "Accept all request from cluster"
+    type: allow
+    hosts:
+      - 10.122.83.137
